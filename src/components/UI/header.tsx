@@ -39,7 +39,7 @@ const Header: React.FC = () => {
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center flex-1 justify-end space-x-8 border-red">
+          <div className="hidden md:flex items-center flex-1 justify-end space-x-8 ">
             <div className="flex items-center space-x-8">
               {navItems.map((item) => (
                 <a
@@ -53,7 +53,7 @@ const Header: React.FC = () => {
               ))}
             </div>
             <button className="bg-[#FFC94B] hover:bg-[#A5C85A] text-[#2F3E3E] font-semibold px-6 py-2 rounded-full transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg whitespace-nowrap ml-4">
-              Get Started
+              Get Started....
             </button>
           </div>
 
@@ -70,7 +70,7 @@ const Header: React.FC = () => {
 
         {/* Mobile Navigation */}
         <div
-          className={`block md:hidden transition-all duration-300 ease-in-out border-red ${
+          className={`block md:hidden transition-all duration-300 ease-in-out  ${
             isMenuOpen
               ? "max-h-64 opacity-100"
               : "max-h-0 opacity-0 overflow-hidden"

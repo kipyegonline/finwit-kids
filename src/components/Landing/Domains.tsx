@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import {
   DollarSign,
   Cross,
@@ -15,6 +16,16 @@ import {
 } from "lucide-react";
 
 const DomainsSection: React.FC = () => {
+  // Function to convert domain title to URL slug
+  const titleToSlug = (title: string): string => {
+    return title
+      .toLowerCase()
+      .replace(/[^\w\s-]/g, "") // Remove special characters except hyphens
+      .replace(/\s+/g, "-") // Replace spaces with hyphens
+      .replace(/--+/g, "-") // Replace multiple hyphens with single hyphen
+      .trim();
+  };
+
   const domains = [
     {
       icon: DollarSign,
@@ -163,45 +174,51 @@ const DomainsSection: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:gap-8">
           {domains.map((domain, index) => {
             const IconComponent = domain.icon;
+            const domainSlug = titleToSlug(domain.title);
             return (
-              <div
+              <Link
                 key={domain.title}
-                className={`group relative p-6 bg-[#FAF7F2] hover:bg-white rounded-2xl border border-gray-100 hover:border-[#2CA4A4]/20 shadow-sm hover:shadow-xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 animate-fadeInUp`}
-                style={{ animationDelay: `${index * 0.1}s` }}
+                to={`/domains-of-development/${domainSlug}`}
+                className="block"
               >
-                {/* Icon container */}
                 <div
-                  className={`relative w-14 h-14 ${domain.bgColor} ${domain.hoverColor} rounded-xl flex items-center justify-center mb-4 transition-all duration-300 group-hover:scale-110`}
+                  className={`group relative p-6 bg-[#FAF7F2] hover:bg-white rounded-2xl border border-gray-100 hover:border-[#2CA4A4]/20 shadow-sm hover:shadow-xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 animate-fadeInUp cursor-pointer`}
+                  style={{ animationDelay: `${index * 0.1}s` }}
                 >
-                  <IconComponent className="w-7 h-7 text-[#2CA4A4] group-hover:text-[#2F3E3E] transition-colors duration-300" />
+                  {/* Icon container */}
+                  <div
+                    className={`relative w-14 h-14 ${domain.bgColor} ${domain.hoverColor} rounded-xl flex items-center justify-center mb-4 transition-all duration-300 group-hover:scale-110`}
+                  >
+                    <IconComponent className="w-7 h-7 text-[#2CA4A4] group-hover:text-[#2F3E3E] transition-colors duration-300" />
 
-                  {/* Floating dot */}
-                  <div className="absolute -top-1 -right-1 w-3 h-3 bg-[#FFC94B] rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-ping transition-opacity duration-300"></div>
+                    {/* Floating dot */}
+                    <div className="absolute -top-1 -right-1 w-3 h-3 bg-[#FFC94B] rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-ping transition-opacity duration-300"></div>
+                  </div>
+
+                  {/* Content */}
+                  <div className="space-y-3">
+                    <h3 className="text-lg font-bold text-[#2F3E3E] group-hover:text-[#2CA4A4] transition-colors duration-300 leading-tight">
+                      {domain.title}
+                    </h3>
+                    <p className="text-sm text-[#2F3E3E]/70 group-hover:text-[#2F3E3E]/90 transition-colors duration-300 leading-relaxed">
+                      {domain.description}
+                    </p>
+                  </div>
+
+                  {/* Hover gradient overlay */}
+                  <div
+                    className={`absolute inset-0 bg-gradient-to-br ${domain.color} rounded-2xl opacity-0 group-hover:opacity-5 transition-opacity duration-500 pointer-events-none`}
+                  ></div>
+
+                  {/* Bottom accent line */}
+                  <div
+                    className={`absolute bottom-0 left-6 right-6 h-1 bg-gradient-to-r ${domain.color} rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-center`}
+                  ></div>
+
+                  {/* Corner decoration */}
+                  <div className="absolute top-4 right-4 w-2 h-2 bg-[#A5C85A] rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-bounce transition-all duration-300 delay-100"></div>
                 </div>
-
-                {/* Content */}
-                <div className="space-y-3">
-                  <h3 className="text-lg font-bold text-[#2F3E3E] group-hover:text-[#2CA4A4] transition-colors duration-300 leading-tight">
-                    {domain.title}
-                  </h3>
-                  <p className="text-sm text-[#2F3E3E]/70 group-hover:text-[#2F3E3E]/90 transition-colors duration-300 leading-relaxed">
-                    {domain.description}
-                  </p>
-                </div>
-
-                {/* Hover gradient overlay */}
-                <div
-                  className={`absolute inset-0 bg-gradient-to-br ${domain.color} rounded-2xl opacity-0 group-hover:opacity-5 transition-opacity duration-500 pointer-events-none`}
-                ></div>
-
-                {/* Bottom accent line */}
-                <div
-                  className={`absolute bottom-0 left-6 right-6 h-1 bg-gradient-to-r ${domain.color} rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-center`}
-                ></div>
-
-                {/* Corner decoration */}
-                <div className="absolute top-4 right-4 w-2 h-2 bg-[#A5C85A] rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-bounce transition-all duration-300 delay-100"></div>
-              </div>
+              </Link>
             );
           })}
         </div>
@@ -232,7 +249,7 @@ const DomainsSection: React.FC = () => {
         </div>
       </div>
 
-      <style jsx>{`
+      <style>{`
         @keyframes fadeInUp {
           from {
             opacity: 0;
