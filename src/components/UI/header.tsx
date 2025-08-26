@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
-
+import Logo from "../../assets/finwit_kids_logo_clear.png";
+import LogoFin from "../../assets/fwk_clear.png";
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -30,10 +31,10 @@ const Header: React.FC = () => {
         <div className="max-w-none mx-auto flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-gradient-to-br from-[#2CA4A4] to-[#5EC1E8] rounded-full flex items-center justify-center">
-              <span className="text-white font-bold text-sm">F</span>
+            <div className="w-20 h-20  rounded-full flex items-center justify-center">
+              <img src={Logo} alt="Finwit Kids Logo" className="w-20 h-20" />
             </div>
-            <span className="text-[#2F3E3E] font-bold text-lg">
+            <span className="text-[#2F3E3E] font-bold text-lg hidden">
               Finwit Kids
             </span>
           </div>

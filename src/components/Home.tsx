@@ -1,10 +1,10 @@
-import DomainsSection from "./Landing/Domains";
-import HeroSection from "./Landing/Hero";
-import HowItWorksSection from "./Landing/HowItWorks";
-import NewsletterSection from "./Landing/Newsletter";
-import WhyFinwitKidsSection from "./Landing/WhyFinwitKids";
-import Footer from "./UI/Footer";
-import Header from "./UI/header";
+import DomainsSection from "@/components/Landing/Domains";
+import HeroSection from "@/components/Landing/Hero";
+import HowItWorksSection from "@/components/Landing/HowItWorks";
+import NewsletterSection from "@/components/Landing/Newsletter";
+import WhyFinwitKidsSection from "@/components/Landing/WhyFinwitKids";
+import Footer from "@/components/UI/Footer";
+import Header from "@/components/UI/header";
 
 const Home = () => {
   return (

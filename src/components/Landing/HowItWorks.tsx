@@ -7,7 +7,8 @@ import {
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
-
+import sophia from "@/assets/sophia.jpg";
+import leo from "@/assets/leo.jpg";
 const HowItWorksSection: React.FC = () => {
   const steps = [
     {
@@ -39,14 +40,14 @@ const HowItWorksSection: React.FC = () => {
 
   const testimonials = [
     {
-      image: "/path-to-parents-image.jpg", // You'll replace this with your actual image path
+      image: sophia, // You'll replace this with your actual image path
       quote:
         "Finwit Kids has transformed our family's approach to learning. My child is more engaged and confident!",
       name: "Sophia, Parent",
       role: "Parent",
     },
     {
-      image: "/path-to-child-image.jpg", // You'll replace this with your actual image path
+      image: leo, // You'll replace this with your actual image path
       quote:
         "I love the lessons and activities! They're so much fun and I'm learning a lot.",
       name: "Leo, Child",
@@ -192,12 +193,17 @@ const HowItWorksSection: React.FC = () => {
               >
                 <div className="flex flex-col items-center text-center space-y-6">
                   {/* Image placeholder */}
-                  <div className="relative w-32 h-32 bg-gradient-to-br from-[#5EC1E8]/20 to-[#2CA4A4]/20 rounded-full overflow-hidden border-4 border-white shadow-lg group-hover:scale-110 transition-transform duration-300">
+                  <div className="relative w-44 h-44 bg-gradient-to-br from-[#5EC1E8]/20 to-[#2CA4A4]/20 rounded-full overflow-hidden border-4 border-white shadow-lg group-hover:scale-110 transition-transform duration-300">
                     {/* You can replace this div with an actual img tag */}
                     <div className="w-full h-full bg-gradient-to-br from-[#2CA4A4] to-[#5EC1E8] flex items-center justify-center">
                       <span className="text-white text-2xl font-bold">
                         {testimonial.name.charAt(0)}
                       </span>
+                      <img
+                        src={testimonial.image}
+                        alt={testimonial.name}
+                        className="absolute inset-0 w-full h-full object-cover"
+                      />
                     </div>
 
                     {/* Decorative ring */}
