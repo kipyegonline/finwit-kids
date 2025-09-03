@@ -1,13 +1,14 @@
 import { BrowserRouter as Router } from "react-router-dom";
 import AppRoutes from "@/routes";
+import RootLayout from "@/components/layouts/RootLayout";
 import "./App.css";
 
 function App() {
   return (
     <Router>
-      <div className="min-h-screen">
+      <RootLayout>
         <AppRoutes />
-      </div>
+      </RootLayout>
     </Router>
   );
 }

@@ -30,7 +30,9 @@
       "@/types/*": ["src/types/*"],
       "@/types": ["src/types"],
       "@/lib/*": ["src/lib/*"],
-      "@/lib": ["src/lib"]
+      "@/lib": ["src/lib"],
+      "@/pages/*": ["src/pages/*"],
+      "@/pages": ["src/pages"]
     },
 
     /* Linting */
