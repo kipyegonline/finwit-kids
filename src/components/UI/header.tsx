@@ -7,6 +7,7 @@ import {
   GraduationCap,
   BookOpen,
   Users,
+  Contact,
 } from "lucide-react";
 import Logo from "../../assets/finwit_kids_logo_clear.png";
 import LogoFin from "../../assets/fwk_clear.png";
@@ -30,6 +31,7 @@ const Header: React.FC = () => {
     { name: "Programs", href: "/programs", icon: GraduationCap },
     { name: "Resources", href: "/resources", icon: BookOpen },
     { name: "Community", href: "/community", icon: Users },
+    { name: "Contact us", href: "/contact-us", icon: Contact },
   ];
 
   return (

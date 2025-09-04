@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import sophia from "@/assets/sophia.jpg";
 import leo from "@/assets/leo.jpg";
+import { useNavigate } from "react-router-dom";
 const HowItWorksSection: React.FC = () => {
   const steps = [
     {
@@ -54,7 +55,7 @@ const HowItWorksSection: React.FC = () => {
       role: "Child",
     },
   ];
-
+  const navigate = useNavigate();
   return (
     <section className="py-20 bg-[#FAF7F2] relative overflow-hidden">
       {/* Background decorative elements */}
@@ -147,7 +148,10 @@ const HowItWorksSection: React.FC = () => {
             className="text-center animate-fadeInUp"
             style={{ animationDelay: "0.6s" }}
           >
-            <button className="bg-[#FFC94B] hover:bg-[#A5C85A] text-[#2F3E3E] font-semibold px-8 py-3 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+            <button
+              onClick={() => navigate("/learning-plans")}
+              className="bg-[#FFC94B] hover:bg-[#A5C85A] text-[#2F3E3E] font-semibold px-8 py-3 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+            >
               Choose a Plan
             </button>
           </div>

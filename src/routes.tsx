@@ -6,6 +6,9 @@ import ResourcesPage from "./pages/Resources";
 import CommunityPage from "./pages/Community";
 import AboutUsPage from "./pages/Aboutus";
 import ContactUs from "./pages/ContactUs";
+import LearningPath from "./components/LearninPath";
+import LearningPlans from "./components/LearningPlan";
+import Error404Page from "./components/common/Error404";
 
 const AppRoutes = () => {
   return (
@@ -20,6 +23,9 @@ const AppRoutes = () => {
         path="/domains-of-development/:domain"
         element={<DomainDetail />}
       />
+
+      <Route path="/learning-plans" element={<LearningPlans />} />
+      <Route path="*" element={<Error404Page />} />
       {/* Add more routes here as the app grows */}
     </Routes>
   );

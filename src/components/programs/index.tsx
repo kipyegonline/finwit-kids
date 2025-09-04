@@ -15,7 +15,7 @@ import {
 const AgeSelectorAndSingleDomains: React.FC = () => {
   const [selectedAge, setSelectedAge] = useState("6-7 years");
 
-  const ageGroups = ["0-5 years", "6-7 years", "8-12 years", "13-18 years"];
+  const ageGroups = ["3-5 years", "6-7 years", "8-12 years", "13-18 years"];
 
   const singleDomains = [
     {

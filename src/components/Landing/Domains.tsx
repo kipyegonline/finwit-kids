@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   DollarSign,
   Cross,
@@ -135,9 +135,9 @@ const DomainsSection: React.FC = () => {
       hoverColor: "group-hover:bg-[#2CA4A4]/20",
     },
   ];
-
+  const navigate = useNavigate();
   return (
-    <section className="py-20 bg-white relative overflow-hidden">
+    <section className="py-20 bg-white relative overflow-hidden" id="domains">
       {/* Background decorative elements */}
       <div className="absolute inset-0">
         <div className="absolute top-20 left-10 w-32 h-32 bg-[#FFC94B]/5 rounded-full blur-2xl"></div>
@@ -238,7 +238,10 @@ const DomainsSection: React.FC = () => {
               experiences.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-[#2CA4A4] hover:bg-[#A5C85A] text-white font-semibold px-8 py-3 rounded-full transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg">
+              <button
+                onClick={() => navigate("/programs")}
+                className="bg-[#2CA4A4] hover:bg-[#A5C85A] text-white font-semibold px-8 py-3 rounded-full transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg"
+              >
                 View All Programs
               </button>
               <button className="bg-[#FFC94B] hover:bg-[#5EC1E8] text-[#2F3E3E] hover:text-white font-semibold px-8 py-3 rounded-full transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg">

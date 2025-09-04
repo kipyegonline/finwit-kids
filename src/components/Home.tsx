@@ -5,6 +5,7 @@ import NewsletterSection from "@/components/Landing/Newsletter";
 import WhyFinwitKidsSection from "@/components/Landing/WhyFinwitKids";
 import Footer from "@/components/UI/Footer";
 import Header from "@/components/UI/header";
+import { useParams } from "react-router-dom";
 
 const Home = () => {
   return (

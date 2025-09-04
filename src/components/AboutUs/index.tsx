@@ -8,6 +8,7 @@ import {
   Target,
   Lightbulb,
 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 // Child Component 1: Vision and Mission
 const VisionAndMission: React.FC = () => {
@@ -147,6 +148,7 @@ const OurPhilosophy: React.FC = () => {
 
 // Child Component 3: Meet the Founder
 const MeetTheFounder: React.FC = () => {
+  const navigate = useNavigate();
   return (
     <section className="py-16 bg-[#FAF7F2] relative overflow-hidden">
       {/* Background decorative elements */}
@@ -257,7 +259,12 @@ const MeetTheFounder: React.FC = () => {
                 <span>Get Started Today</span>
                 <ArrowRight className="w-5 h-5" />
               </button>
-              <button className="bg-[#FFC94B] hover:bg-[#A5C85A] text-[#2F3E3E] font-semibold px-8 py-3 rounded-full transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg">
+              <button
+                onClick={() => {
+                  navigate("/programs");
+                }}
+                className="bg-[#FFC94B] hover:bg-[#A5C85A] text-[#2F3E3E] font-semibold px-8 py-3 rounded-full transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg"
+              >
                 Learn More About Our Programs
               </button>
             </div>

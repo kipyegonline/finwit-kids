@@ -1,15 +1,15 @@
 import React from "react";
 import { Facebook, Instagram, Youtube } from "lucide-react";
-
+import Logo from "../../assets/finwit_kids_logo_clear.png";
 const Footer: React.FC = () => {
   const footerLinks = {
     main: [
-      { name: "About", href: "#about" },
-      { name: "Domains", href: "#domains" },
+      { name: "About", href: "/about-us" },
+      { name: "Domains", href: "/#domains" },
       { name: "Pricing", href: "#pricing" },
       { name: "Blog", href: "#blog" },
       { name: "Events", href: "#events" },
-      { name: "Contact", href: "#contact" },
+      { name: "Contact", href: "/contact-us" },
     ],
   };
 
@@ -53,8 +53,8 @@ const Footer: React.FC = () => {
           {/* Logo and Description */}
           <div className="col-span-2 md:col-span-2 animate-fadeInUp">
             <div className="flex items-center space-x-2 mb-4">
-              <div className="w-8 h-8 bg-gradient-to-br from-[#2CA4A4] to-[#5EC1E8] rounded-full flex items-center justify-center">
-                <span className="text-white font-bold text-sm">F</span>
+              <div className="w-20 h-20  rounded-full flex items-center justify-center">
+                <img src={Logo} alt="" />
               </div>
               <span className="text-[#2F3E3E] font-bold text-lg">
                 Finwit Kids

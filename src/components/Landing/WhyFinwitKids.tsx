@@ -1,5 +1,6 @@
 import React from "react";
 import { Cross, Users, Clock } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const WhyFinwitKidsSection: React.FC = () => {
   const features = [
@@ -31,7 +32,7 @@ const WhyFinwitKidsSection: React.FC = () => {
       borderColor: "border-[#A5C85A]/20",
     },
   ];
-
+  const navigate = useNavigate();
   return (
     <section className="py-20 bg-[#FAF7F2] relative overflow-hidden">
       {/* Background decorative elements */}
@@ -122,10 +123,16 @@ const WhyFinwitKidsSection: React.FC = () => {
               spiritually grounded children through our comprehensive program.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-[#2CA4A4] hover:bg-[#A5C85A] text-white font-semibold px-8 py-3 rounded-full transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg">
+              <button
+                onClick={() => navigate("/programs")}
+                className="bg-[#2CA4A4] hover:bg-[#A5C85A] text-white font-semibold px-8 py-3 rounded-full transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg"
+              >
                 Explore Programs
               </button>
-              <button className="bg-transparent hover:bg-[#FFC94B] text-[#2CA4A4] hover:text-[#2F3E3E] border-2 border-[#2CA4A4] hover:border-[#FFC94B] font-semibold px-8 py-3 rounded-full transition-all duration-300 transform hover:scale-105">
+              <button
+                onClick={() => navigate("/about-us")}
+                className="bg-transparent hover:bg-[#FFC94B] text-[#2CA4A4] hover:text-[#2F3E3E] border-2 border-[#2CA4A4] hover:border-[#FFC94B] font-semibold px-8 py-3 rounded-full transition-all duration-300 transform hover:scale-105"
+              >
                 Learn More
               </button>
             </div>
