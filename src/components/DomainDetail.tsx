@@ -1,19 +1,6 @@
 import { useParams, Link } from "react-router-dom";
-import { ArrowLeft, BookOpen, Users } from "lucide-react";
-import {
-  DollarSign,
-  Cross,
-  Heart,
-  Palette,
-  Microscope,
-  Music,
-  Monitor,
-  Apple,
-  TreePine,
-  Dumbbell,
-} from "lucide-react";
-import Header from "./UI/header";
-import Footer from "./UI/Footer";
+import { ArrowLeft } from "lucide-react";
+
 import ScrollToTop from "./common/ScrolltoTop";
 import FinancialLiteracy from "./Domains/FinancialLitercay";
 import AgricultureOutdoors from "./Domains/Agriculture";
@@ -27,7 +14,6 @@ import SpiritualGrowth from "./Domains/SpiritualGrowth";
 
 const DomainDetail = () => {
   const { domain } = useParams<{ domain: string }>();
-  console.log(domain);
 
   const currentDomain = true;
 

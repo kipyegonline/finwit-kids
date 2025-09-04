@@ -5,9 +5,17 @@ import NewsletterSection from "@/components/Landing/Newsletter";
 import WhyFinwitKidsSection from "@/components/Landing/WhyFinwitKids";
 import Footer from "@/components/UI/Footer";
 import Header from "@/components/UI/header";
-import { useParams } from "react-router-dom";
+import React from "react";
+import { useSearchParams } from "react-router-dom";
 
 const Home = () => {
+  React.useEffect(() => {
+    const searchParams = location.search;
+    if (searchParams) {
+      const domains = document.getElementById("domains");
+      domains?.scrollIntoView({ behavior: "smooth" });
+    }
+  }, []);
   return (
     <main className="min-h-screen border-green">
       <Header />
