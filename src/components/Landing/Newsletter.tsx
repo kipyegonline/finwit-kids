@@ -106,7 +106,7 @@ const NewsletterSection: React.FC = () => {
 
               {/* Privacy notice */}
               <p className="text-xs text-[#2F3E3E]/60 mt-4 leading-relaxed">
-                Join thousands of parents receiving weekly tips, activities, and
+                Join hundreds of parents receiving weekly tips, activities, and
                 insights to help their children thrive.
                 <br />
                 No spam, unsubscribe anytime.

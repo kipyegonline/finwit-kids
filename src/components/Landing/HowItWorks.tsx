@@ -42,8 +42,7 @@ const HowItWorksSection: React.FC = () => {
   const testimonials = [
     {
       image: sophia, // You'll replace this with your actual image path
-      quote:
-        "Finwit Kids has transformed our family's approach to learning. My child is more engaged and confident!",
+      quote: "Finwit Kids changed how my child learns...",
       name: "Sophia, Parent",
       role: "Parent",
     },

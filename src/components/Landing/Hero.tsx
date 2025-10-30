@@ -32,10 +32,10 @@ const HeroSection: React.FC = () => {
             <div className="space-y-6">
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-[#2F3E3E] leading-tight">
                 <span className="bg-gradient-to-r from-[#2CA4A4] to-[#5EC1E8] bg-clip-text text-transparent">
-                  Raising Generations
+                  Smart
                 </span>{" "}
-                <span className="relative">
-                  Empowered for
+                <span className="relative text-[#A5C85A]">
+                  Starts
                   <svg
                     className="absolute -bottom-2 left-0 w-full h-3 text-[#FFC94B]"
                     viewBox="0 0 200 12"
@@ -49,15 +49,15 @@ const HeroSection: React.FC = () => {
                     />
                   </svg>
                 </span>{" "}
-                Life, Balanced in <span className="text-[#A5C85A]">Mind</span>,{" "}
-                <span className="text-[#8B5FBF]">Money</span> &{" "}
-                <span className="text-[#2CA4A4]">Mission</span>
+                <span className="text-[#A5C85A] hidden">Mind</span>{" "}
+                <span className="text-[#8B5FBF]">Here</span>{" "}
+                <span className="text-[#2CA4A4] hidden">Mission</span>
               </h1>
 
               <p className="text-lg text-[#2F3E3E]/80 max-w-2xl leading-relaxed">
-                A holistic learning platform nurturing children in wisdom,
-                values, and smart decisions through engaging, faith-based
-                education across 9 essential life domains.
+                A holistic learning platform for kids aged 4 to 18. Build
+                wisdom, character, creativity, and smart money habits from the
+                start.
               </p>
             </div>
 

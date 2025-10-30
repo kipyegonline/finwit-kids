@@ -164,8 +164,10 @@ const DomainsSection: React.FC = () => {
             of Development
           </h2>
           <p className="text-lg text-[#2F3E3E]/80 max-w-3xl mx-auto mb-8">
-            Comprehensive growth across essential life areas, designed to
-            nurture well-rounded, capable, and confident children.
+            Finwit Kids goes beyond academics to nurture the whole child. Each
+            domain is designed to be engaging, age-appropriate, and build on
+            what children learned the year before. Choose individual domains or
+            the full curriculum
           </p>
           <div className="w-32 h-1 bg-gradient-to-r from-[#FFC94B] via-[#A5C85A] to-[#2CA4A4] mx-auto rounded-full"></div>
         </div>

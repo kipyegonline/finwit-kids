@@ -1,9 +1,17 @@
 import React from "react";
-import { Cross, Users, Clock } from "lucide-react";
+import { Cross, Users, Clock, GraduationCap } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 const WhyFinwitKidsSection: React.FC = () => {
   const features = [
+    {
+      icon: GraduationCap,
+      title: "Modular Learning",
+      description: "Modular learning across 11 domains + 1 digital portal",
+      color: "from-[#8B5FBF] to-[#2CA4A4]",
+      bgColor: "bg-[#8B5FBF]/10",
+      borderColor: "border-[#8B5FBF]/20",
+    },
     {
       icon: Cross,
       title: "Christian Values",
@@ -61,7 +69,7 @@ const WhyFinwitKidsSection: React.FC = () => {
         </div>
 
         {/* Features Grid */}
-        <div className="grid md:grid-cols-3 gap-8 lg:gap-12">
+        <div className="grid md:grid-cols-4 gap-8 lg:gap-8">
           {features.map((feature, index) => {
             const IconComponent = feature.icon;
             return (
