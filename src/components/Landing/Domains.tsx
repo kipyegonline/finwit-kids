@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
+import type { LucideIcon } from "lucide-react";
 import {
   DollarSign,
   Cross,
@@ -15,127 +16,206 @@ import {
   BookOpen,
 } from "lucide-react";
 
-const DomainsSection: React.FC = () => {
-  // Function to convert domain title to URL slug
-  const titleToSlug = (title: string): string => {
-    return title
-      .toLowerCase()
-      .replace(/[^\w\s-]/g, "") // Remove special characters except hyphens
-      .replace(/\s+/g, "-") // Replace spaces with hyphens
-      .replace(/--+/g, "-") // Replace multiple hyphens with single hyphen
-      .trim();
-  };
+// Domain type definition
+export interface Domain {
+  icon: LucideIcon;
+  title: string;
+  description: string;
+  color: string;
+  bgColor: string;
+  hoverColor: string;
+}
 
-  const domains = [
-    {
-      icon: DollarSign,
-      title: "Financial Literacy",
-      description:
-        "Building a strong foundation in financial literacy and responsible money management.",
-      color: "from-[#2CA4A4] to-[#5EC1E8]",
-      bgColor: "bg-[#2CA4A4]/10",
-      hoverColor: "group-hover:bg-[#2CA4A4]/20",
-    },
-    {
-      icon: Cross,
-      title: "Spiritual Growth (Christianity)",
-      description:
-        "Nurturing spiritual development through Christian values and teachings.",
-      color: "from-[#8B5FBF] to-[#2CA4A4]",
-      bgColor: "bg-[#8B5FBF]/10",
-      hoverColor: "group-hover:bg-[#8B5FBF]/20",
-    },
-    {
-      icon: Heart,
-      title: "Emotional & Mental Well-being",
-      description:
-        "Promoting emotional intelligence, resilience, and positive mental health.",
-      color: "from-[#FFC94B] to-[#A5C85A]",
-      bgColor: "bg-[#FFC94B]/10",
-      hoverColor: "group-hover:bg-[#FFC94B]/20",
-    },
-    {
-      icon: Palette,
-      title: "Creative Arts & Craft",
-      description:
-        "Encouraging creativity, self-expression, and appreciation for the arts and crafts.",
-      color: "from-[#8B5FBF] to-[#5EC1E8]",
-      bgColor: "bg-[#8B5FBF]/10",
-      hoverColor: "group-hover:bg-[#8B5FBF]/20",
-    },
-    {
-      icon: Microscope,
-      title: "Science & Innovation",
-      description:
-        "Exploring scientific concepts and fostering innovative thinking.",
-      color: "from-[#5EC1E8] to-[#2CA4A4]",
-      bgColor: "bg-[#5EC1E8]/10",
-      hoverColor: "group-hover:bg-[#5EC1E8]/20",
-    },
-    {
-      icon: Music,
-      title: "Music, Film & Media",
-      description:
-        "Developing musical skills, appreciation, and creativity in music, film, and media.",
-      color: "from-[#A5C85A] to-[#FFC94B]",
-      bgColor: "bg-[#A5C85A]/10",
-      hoverColor: "group-hover:bg-[#A5C85A]/20",
-    },
-    {
-      icon: Monitor,
-      title: "Technology & Digital Literacy",
-      description:
-        "Understanding technology and developing digital literacy skills.",
-      color: "from-[#2CA4A4] to-[#8B5FBF]",
-      bgColor: "bg-[#2CA4A4]/10",
-      hoverColor: "group-hover:bg-[#2CA4A4]/20",
-    },
-    {
-      icon: Apple,
-      title: "Food & Nutrition",
-      description:
-        "Learning about healthy eating habits and the importance of balanced nutrition.",
-      color: "from-[#FFC94B] to-[#5EC1E8]",
-      bgColor: "bg-[#FFC94B]/10",
-      hoverColor: "group-hover:bg-[#FFC94B]/20",
-    },
-    {
-      icon: TreePine,
-      title: "Agriculture & Landscaping/Outdoors",
-      description:
-        "Connecting with nature, understanding agricultural practices, and promoting outdoor activities.",
-      color: "from-[#A5C85A] to-[#2CA4A4]",
-      bgColor: "bg-[#A5C85A]/10",
-      hoverColor: "group-hover:bg-[#A5C85A]/20",
-    },
-    {
-      icon: Dumbbell,
-      title: "Physical Wellness (Play & Exercise)",
-      description:
-        "Promoting physical fitness, healthy play, and exercise habits.",
-      color: "from-[#5EC1E8] to-[#FFC94B]",
-      bgColor: "bg-[#5EC1E8]/10",
-      hoverColor: "group-hover:bg-[#5EC1E8]/20",
-    },
-    {
-      icon: Users,
-      title: "Community and Leadership",
-      description: "Developing community engagement and leadership skills.",
-      color: "from-[#8B5FBF] to-[#A5C85A]",
-      bgColor: "bg-[#8B5FBF]/10",
-      hoverColor: "group-hover:bg-[#8B5FBF]/20",
-    },
-    {
-      icon: BookOpen,
-      title: "Vernacular & Cultural Identity",
-      description:
-        "Celebrating and preserving cultural heritage and linguistic diversity.",
-      color: "from-[#2CA4A4] to-[#FFC94B]",
-      bgColor: "bg-[#2CA4A4]/10",
-      hoverColor: "group-hover:bg-[#2CA4A4]/20",
-    },
-  ];
+// Utility function to convert domain title to URL slug
+const titleToSlug = (title: string): string => {
+  return title
+    .toLowerCase()
+    .replace(/[^\w\s-]/g, "") // Remove special characters except hyphens
+    .replace(/\s+/g, "-") // Replace spaces with hyphens
+    .replace(/--+/g, "-") // Replace multiple hyphens with single hyphen
+    .trim();
+};
+
+// Domains data array - exported for reuse
+const DOMAINS: Domain[] = [
+  {
+    icon: DollarSign,
+    title: "Financial Literacy",
+    description:
+      "Building a strong foundation in financial literacy and responsible money management.",
+    color: "from-[#2CA4A4] to-[#5EC1E8]",
+    bgColor: "bg-[#2CA4A4]/10",
+    hoverColor: "group-hover:bg-[#2CA4A4]/20",
+  },
+  {
+    icon: Cross,
+    title: "Spiritual Growth (Christianity)",
+    description:
+      "Nurturing spiritual development through Christian values and teachings.",
+    color: "from-[#8B5FBF] to-[#2CA4A4]",
+    bgColor: "bg-[#8B5FBF]/10",
+    hoverColor: "group-hover:bg-[#8B5FBF]/20",
+  },
+  {
+    icon: Heart,
+    title: "Emotional & Mental Well-being",
+    description:
+      "Promoting emotional intelligence, resilience, and positive mental health.",
+    color: "from-[#FFC94B] to-[#A5C85A]",
+    bgColor: "bg-[#FFC94B]/10",
+    hoverColor: "group-hover:bg-[#FFC94B]/20",
+  },
+  {
+    icon: Palette,
+    title: "Creative Arts & Craft",
+    description:
+      "Encouraging creativity, self-expression, and appreciation for the arts and crafts.",
+    color: "from-[#8B5FBF] to-[#5EC1E8]",
+    bgColor: "bg-[#8B5FBF]/10",
+    hoverColor: "group-hover:bg-[#8B5FBF]/20",
+  },
+  {
+    icon: Microscope,
+    title: "Science & Innovation",
+    description:
+      "Exploring scientific concepts and fostering innovative thinking.",
+    color: "from-[#5EC1E8] to-[#2CA4A4]",
+    bgColor: "bg-[#5EC1E8]/10",
+    hoverColor: "group-hover:bg-[#5EC1E8]/20",
+  },
+  {
+    icon: Music,
+    title: "Music, Film & Media",
+    description:
+      "Developing musical skills, appreciation, and creativity in music, film, and media.",
+    color: "from-[#A5C85A] to-[#FFC94B]",
+    bgColor: "bg-[#A5C85A]/10",
+    hoverColor: "group-hover:bg-[#A5C85A]/20",
+  },
+  {
+    icon: Monitor,
+    title: "Technology & Digital Literacy",
+    description:
+      "Understanding technology and developing digital literacy skills.",
+    color: "from-[#2CA4A4] to-[#8B5FBF]",
+    bgColor: "bg-[#2CA4A4]/10",
+    hoverColor: "group-hover:bg-[#2CA4A4]/20",
+  },
+  {
+    icon: Apple,
+    title: "Food & Nutrition",
+    description:
+      "Learning about healthy eating habits and the importance of balanced nutrition.",
+    color: "from-[#FFC94B] to-[#5EC1E8]",
+    bgColor: "bg-[#FFC94B]/10",
+    hoverColor: "group-hover:bg-[#FFC94B]/20",
+  },
+  {
+    icon: TreePine,
+    title: "Agriculture & Landscaping/Outdoors",
+    description:
+      "Connecting with nature, understanding agricultural practices, and promoting outdoor activities.",
+    color: "from-[#A5C85A] to-[#2CA4A4]",
+    bgColor: "bg-[#A5C85A]/10",
+    hoverColor: "group-hover:bg-[#A5C85A]/20",
+  },
+  {
+    icon: Dumbbell,
+    title: "Physical Wellness (Play & Exercise)",
+    description:
+      "Promoting physical fitness, healthy play, and exercise habits.",
+    color: "from-[#5EC1E8] to-[#FFC94B]",
+    bgColor: "bg-[#5EC1E8]/10",
+    hoverColor: "group-hover:bg-[#5EC1E8]/20",
+  },
+  {
+    icon: Users,
+    title: "Community and Leadership",
+    description: "Developing community engagement and leadership skills.",
+    color: "from-[#8B5FBF] to-[#A5C85A]",
+    bgColor: "bg-[#8B5FBF]/10",
+    hoverColor: "group-hover:bg-[#8B5FBF]/20",
+  },
+  {
+    icon: BookOpen,
+    title: "Vernacular & Cultural Identity",
+    description:
+      "Celebrating and preserving cultural heritage and linguistic diversity.",
+    color: "from-[#2CA4A4] to-[#FFC94B]",
+    bgColor: "bg-[#2CA4A4]/10",
+    hoverColor: "group-hover:bg-[#2CA4A4]/20",
+  },
+];
+
+// Reusable DomainsGrid Component
+interface DomainsGridProps {
+  domains?: Domain[];
+  gridCols?: string; // Optional custom grid columns class
+}
+
+export const DomainsGrid: React.FC<DomainsGridProps> = ({
+  domains = DOMAINS,
+  gridCols = "grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4",
+}) => {
+  return (
+    <div className={`grid ${gridCols} gap-6 lg:gap-8`}>
+      {domains.map((domain, index) => {
+        const IconComponent = domain.icon;
+        const domainSlug = titleToSlug(domain.title);
+        return (
+          <Link
+            key={domain.title}
+            to={`/domains-of-development/${domainSlug}`}
+            className="block"
+          >
+            <div
+              className={`group relative p-6 bg-[#FAF7F2] hover:bg-white rounded-2xl border border-gray-100 hover:border-[#2CA4A4]/20 shadow-sm hover:shadow-xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 animate-fadeInUp cursor-pointer`}
+              style={{ animationDelay: `${index * 0.1}s` }}
+            >
+              {/* Icon container */}
+              <div
+                className={`relative w-14 h-14 ${domain.bgColor} ${domain.hoverColor} rounded-xl flex items-center justify-center mb-4 transition-all duration-300 group-hover:scale-110`}
+              >
+                <IconComponent className="w-7 h-7 text-[#2CA4A4] group-hover:text-[#2F3E3E] transition-colors duration-300" />
+
+                {/* Floating dot */}
+                <div className="absolute -top-1 -right-1 w-3 h-3 bg-[#FFC94B] rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-ping transition-opacity duration-300"></div>
+              </div>
+
+              {/* Content */}
+              <div className="space-y-3">
+                <h3 className="text-lg font-bold text-[#2F3E3E] group-hover:text-[#2CA4A4] transition-colors duration-300 leading-tight">
+                  {domain.title}
+                </h3>
+                <p className="text-sm text-[#2F3E3E]/70 group-hover:text-[#2F3E3E]/90 transition-colors duration-300 leading-relaxed">
+                  {domain.description}
+                </p>
+              </div>
+
+              {/* Hover gradient overlay */}
+              <div
+                className={`absolute inset-0 bg-gradient-to-br ${domain.color} rounded-2xl opacity-0 group-hover:opacity-5 transition-opacity duration-500 pointer-events-none`}
+              ></div>
+
+              {/* Bottom accent line */}
+              <div
+                className={`absolute bottom-0 left-6 right-6 h-1 bg-gradient-to-r ${domain.color} rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-center`}
+              ></div>
+
+              {/* Corner decoration */}
+              <div className="absolute top-4 right-4 w-2 h-2 bg-[#A5C85A] rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-bounce transition-all duration-300 delay-100"></div>
+            </div>
+          </Link>
+        );
+      })}
+    </div>
+  );
+};
+
+// Main DomainsSection Component
+const DomainsSection: React.FC = () => {
   const navigate = useNavigate();
+
   return (
     <section className="py-20 bg-white relative overflow-hidden" id="domains">
       {/* Background decorative elements */}
@@ -172,58 +252,8 @@ const DomainsSection: React.FC = () => {
           <div className="w-32 h-1 bg-gradient-to-r from-[#FFC94B] via-[#A5C85A] to-[#2CA4A4] mx-auto rounded-full"></div>
         </div>
 
-        {/* Domains Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:gap-8">
-          {domains.map((domain, index) => {
-            const IconComponent = domain.icon;
-            const domainSlug = titleToSlug(domain.title);
-            return (
-              <Link
-                key={domain.title}
-                to={`/domains-of-development/${domainSlug}`}
-                className="block"
-              >
-                <div
-                  className={`group relative p-6 bg-[#FAF7F2] hover:bg-white rounded-2xl border border-gray-100 hover:border-[#2CA4A4]/20 shadow-sm hover:shadow-xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 animate-fadeInUp cursor-pointer`}
-                  style={{ animationDelay: `${index * 0.1}s` }}
-                >
-                  {/* Icon container */}
-                  <div
-                    className={`relative w-14 h-14 ${domain.bgColor} ${domain.hoverColor} rounded-xl flex items-center justify-center mb-4 transition-all duration-300 group-hover:scale-110`}
-                  >
-                    <IconComponent className="w-7 h-7 text-[#2CA4A4] group-hover:text-[#2F3E3E] transition-colors duration-300" />
-
-                    {/* Floating dot */}
-                    <div className="absolute -top-1 -right-1 w-3 h-3 bg-[#FFC94B] rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-ping transition-opacity duration-300"></div>
-                  </div>
-
-                  {/* Content */}
-                  <div className="space-y-3">
-                    <h3 className="text-lg font-bold text-[#2F3E3E] group-hover:text-[#2CA4A4] transition-colors duration-300 leading-tight">
-                      {domain.title}
-                    </h3>
-                    <p className="text-sm text-[#2F3E3E]/70 group-hover:text-[#2F3E3E]/90 transition-colors duration-300 leading-relaxed">
-                      {domain.description}
-                    </p>
-                  </div>
-
-                  {/* Hover gradient overlay */}
-                  <div
-                    className={`absolute inset-0 bg-gradient-to-br ${domain.color} rounded-2xl opacity-0 group-hover:opacity-5 transition-opacity duration-500 pointer-events-none`}
-                  ></div>
-
-                  {/* Bottom accent line */}
-                  <div
-                    className={`absolute bottom-0 left-6 right-6 h-1 bg-gradient-to-r ${domain.color} rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-center`}
-                  ></div>
-
-                  {/* Corner decoration */}
-                  <div className="absolute top-4 right-4 w-2 h-2 bg-[#A5C85A] rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-bounce transition-all duration-300 delay-100"></div>
-                </div>
-              </Link>
-            );
-          })}
-        </div>
+        {/* Domains Grid - Using the reusable component */}
+        <DomainsGrid domains={DOMAINS} />
 
         {/* Bottom CTA */}
         <div

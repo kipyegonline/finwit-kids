@@ -64,7 +64,7 @@ const finwitKidsColors = {
 };
 
 // Example usage functions
-const getColorByName = (colorName) => {
+export const getColorByName = (colorName: string) => {
   const allColors = {
     ...finwitKidsColors.primary,
     ...finwitKidsColors.secondary,

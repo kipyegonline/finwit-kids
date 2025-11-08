@@ -7,15 +7,14 @@ import {
   Palette,
   BookOpen,
   Users,
-  Award,
-  ChevronDown,
 } from "lucide-react";
+import { DomainsGrid } from "../Landing/Domains";
 
 // Child Component 1: Age Selector and Single Domains
 const AgeSelectorAndSingleDomains: React.FC = () => {
   const [selectedAge, setSelectedAge] = useState("6-7 years");
 
-  const ageGroups = ["3-5 years", "6-7 years", "8-12 years", "13-18 years"];
+  const ageGroups = ["4-6 years", "7-10 years", "11-14 years", "14-18 years"];
 
   const singleDomains = [
     {
@@ -94,8 +93,8 @@ const AgeSelectorAndSingleDomains: React.FC = () => {
           >
             Single Domains
           </h2>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <DomainsGrid />
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 hidden">
             {singleDomains.map((domain, index) => {
               const IconComponent = domain.icon;
               return (

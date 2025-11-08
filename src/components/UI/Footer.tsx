@@ -6,7 +6,7 @@ const Footer: React.FC = () => {
     main: [
       { name: "About", href: "/about-us" },
       { name: "Domains", href: "/#domains" },
-      { name: "Pricing", href: "#pricing" },
+      { name: "Pricing", href: "/pricing" },
       { name: "Blog", href: "#blog" },
       { name: "Events", href: "#events" },
       { name: "Contact", href: "/contact-us" },
@@ -164,6 +164,15 @@ const Footer: React.FC = () => {
                       className="text-[#2F3E3E]/70 hover:text-[#2CA4A4] text-sm transition-colors duration-200 relative group"
                     >
                       {footerLinks.main[4].name}
+                      <span className="absolute inset-x-0 -bottom-0.5 h-px bg-[#2CA4A4] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-200"></span>
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href={"/community"}
+                      className="text-[#2F3E3E]/70 hover:text-[#2CA4A4] text-sm transition-colors duration-200 relative group"
+                    >
+                      Community
                       <span className="absolute inset-x-0 -bottom-0.5 h-px bg-[#2CA4A4] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-200"></span>
                     </a>
                   </li>

@@ -3,10 +3,9 @@ import HeroSection from "@/components/Landing/Hero";
 import HowItWorksSection from "@/components/Landing/HowItWorks";
 import NewsletterSection from "@/components/Landing/Newsletter";
 import WhyFinwitKidsSection from "@/components/Landing/WhyFinwitKids";
-import Footer from "@/components/UI/Footer";
 import Header from "@/components/UI/header";
 import React from "react";
-import { useSearchParams } from "react-router-dom";
+//import { useSearchParams } from "react-router-dom";
 
 const Home = () => {
   React.useEffect(() => {
@@ -24,7 +23,6 @@ const Home = () => {
       <DomainsSection />
       <HowItWorksSection />
       <NewsletterSection />
-      <Footer />
     </main>
   );
 };

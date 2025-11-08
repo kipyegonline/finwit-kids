@@ -24,6 +24,7 @@ const Header: React.FC = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+  const NoSign = () => null;
 
   const mainNavItems = [
     { name: "Home", href: "/", icon: Home },
@@ -34,8 +35,8 @@ const Header: React.FC = () => {
   ];
 
   const actionNavItems = [
-    { name: "Pricing", href: "/pricing", icon: DollarSign },
-    { name: "Contact", href: "/contact-us", icon: Contact },
+    { name: "Pricing", href: "/pricing", icon: NoSign },
+    // { name: "Contact", href: "/contact-us", icon: Contact },
   ];
 
   const allNavItems = [...mainNavItems, ...actionNavItems];
