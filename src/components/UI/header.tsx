@@ -15,16 +15,25 @@ import { Link, useLocation } from "react-router-dom";
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isSticky, setIsSticky] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
+      const scrollPosition = window.scrollY;
+      const stickyThreshold = 25;
+
+      // Update sticky state based on scroll position
+      setIsSticky(scrollPosition > stickyThreshold);
+
+      // Update scrolled state for additional styling
+      setIsScrolled(scrollPosition > 10);
     };
+
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-  const NoSign = () => null;
+  const NoSign: React.FC = () => null;
 
   const mainNavItems = [
     { name: "Home", href: "/", icon: Home },
@@ -43,19 +52,31 @@ const Header: React.FC = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 w-full z-50 transition-all duration-300 ${
+      style={{
+        position: isSticky ? "fixed" : "relative",
+        top: isSticky ? "0" : "auto",
+        left: isSticky ? "0" : "auto",
+        right: isSticky ? "0" : "auto",
+      }}
+      className={`w-full z-50 transition-all duration-300 ease-in-out ${
+        isSticky ? "animate-slideDown" : ""
+      } ${
         isScrolled
           ? "bg-white/95 backdrop-blur-sm shadow-lg"
           : "bg-white/90 backdrop-blur-sm shadow-md"
       }`}
     >
       <div className="w-full px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto flex justify-between items-center h-20">
+        <div className="max-w-7xl mx-auto flex justify-between items-center h-24">
           {/* Logo - Left Side */}
           <Link to="/" className="flex-shrink-0">
             <div className="flex items-center space-x-2">
-              <div className="w-16 h-16 rounded-full flex items-center justify-center transform hover:scale-105 transition-transform duration-300">
-                <img src={Logo} alt="Finwit Kids Logo" className="w-16 h-16" />
+              <div className="w-24 h-24 rounded-full flex items-center justify-center transform hover:scale-105 transition-transform duration-300">
+                <img
+                  src={Logo}
+                  alt="Finwit Kids Logo"
+                  className="w-24 h-24 object-contain"
+                />
               </div>
             </div>
           </Link>
