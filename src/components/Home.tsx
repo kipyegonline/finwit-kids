@@ -3,7 +3,7 @@ import HeroSection from "@/components/Landing/Hero";
 import HowItWorksSection from "@/components/Landing/HowItWorks";
 import NewsletterSection from "@/components/Landing/Newsletter";
 import WhyFinwitKidsSection from "@/components/Landing/WhyFinwitKids";
-import Header from "@/components/UI/header";
+//import Header from "@/components/UI/header";
 import React from "react";
 //import { useSearchParams } from "react-router-dom";
 
@@ -16,8 +16,7 @@ const Home = () => {
     }
   }, []);
   return (
-    <main className="min-h-screen border-green">
-      <Header />
+    <main className="min-h-screen ">
       <HeroSection />
       <WhyFinwitKidsSection />
       <DomainsSection />

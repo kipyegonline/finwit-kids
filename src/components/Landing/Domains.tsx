@@ -44,8 +44,8 @@ const DOMAINS: Domain[] = [
     description:
       "Building a strong foundation in financial literacy and responsible money management.",
     color: "from-[#2CA4A4] to-[#5EC1E8]",
-    bgColor: "bg-[#2CA4A4]/10",
-    hoverColor: "group-hover:bg-[#2CA4A4]/20",
+    bgColor: "bg-gradient-to-br from-[#2CA4A4] to-[#5EC1E8]",
+    hoverColor: "group-hover:from-[#5EC1E8] group-hover:to-[#2CA4A4]",
   },
   {
     icon: Cross,
@@ -53,8 +53,8 @@ const DOMAINS: Domain[] = [
     description:
       "Nurturing spiritual development through Christian values and teachings.",
     color: "from-[#8B5FBF] to-[#2CA4A4]",
-    bgColor: "bg-[#8B5FBF]/10",
-    hoverColor: "group-hover:bg-[#8B5FBF]/20",
+    bgColor: "bg-gradient-to-br from-[#8B5FBF] to-[#A855F7]",
+    hoverColor: "group-hover:from-[#A855F7] group-hover:to-[#8B5FBF]",
   },
   {
     icon: Heart,
@@ -62,8 +62,8 @@ const DOMAINS: Domain[] = [
     description:
       "Promoting emotional intelligence, resilience, and positive mental health.",
     color: "from-[#FFC94B] to-[#A5C85A]",
-    bgColor: "bg-[#FFC94B]/10",
-    hoverColor: "group-hover:bg-[#FFC94B]/20",
+    bgColor: "bg-gradient-to-br from-[#FFC94B] to-[#FBBF24]",
+    hoverColor: "group-hover:from-[#FBBF24] group-hover:to-[#FFC94B]",
   },
   {
     icon: Palette,
@@ -71,8 +71,8 @@ const DOMAINS: Domain[] = [
     description:
       "Encouraging creativity, self-expression, and appreciation for the arts and crafts.",
     color: "from-[#8B5FBF] to-[#5EC1E8]",
-    bgColor: "bg-[#8B5FBF]/10",
-    hoverColor: "group-hover:bg-[#8B5FBF]/20",
+    bgColor: "bg-gradient-to-br from-[#EC4899] to-[#F472B6]",
+    hoverColor: "group-hover:from-[#F472B6] group-hover:to-[#EC4899]",
   },
   {
     icon: Microscope,
@@ -80,8 +80,8 @@ const DOMAINS: Domain[] = [
     description:
       "Exploring scientific concepts and fostering innovative thinking.",
     color: "from-[#5EC1E8] to-[#2CA4A4]",
-    bgColor: "bg-[#5EC1E8]/10",
-    hoverColor: "group-hover:bg-[#5EC1E8]/20",
+    bgColor: "bg-gradient-to-br from-[#3B82F6] to-[#60A5FA]",
+    hoverColor: "group-hover:from-[#60A5FA] group-hover:to-[#3B82F6]",
   },
   {
     icon: Music,
@@ -89,8 +89,8 @@ const DOMAINS: Domain[] = [
     description:
       "Developing musical skills, appreciation, and creativity in music, film, and media.",
     color: "from-[#A5C85A] to-[#FFC94B]",
-    bgColor: "bg-[#A5C85A]/10",
-    hoverColor: "group-hover:bg-[#A5C85A]/20",
+    bgColor: "bg-gradient-to-br from-[#F59E0B] to-[#FBBF24]",
+    hoverColor: "group-hover:from-[#FBBF24] group-hover:to-[#F59E0B]",
   },
   {
     icon: Monitor,
@@ -98,8 +98,8 @@ const DOMAINS: Domain[] = [
     description:
       "Understanding technology and developing digital literacy skills.",
     color: "from-[#2CA4A4] to-[#8B5FBF]",
-    bgColor: "bg-[#2CA4A4]/10",
-    hoverColor: "group-hover:bg-[#2CA4A4]/20",
+    bgColor: "bg-gradient-to-br from-[#6366F1] to-[#8B5CF6]",
+    hoverColor: "group-hover:from-[#8B5CF6] group-hover:to-[#6366F1]",
   },
   {
     icon: Apple,
@@ -107,8 +107,8 @@ const DOMAINS: Domain[] = [
     description:
       "Learning about healthy eating habits and the importance of balanced nutrition.",
     color: "from-[#FFC94B] to-[#5EC1E8]",
-    bgColor: "bg-[#FFC94B]/10",
-    hoverColor: "group-hover:bg-[#FFC94B]/20",
+    bgColor: "bg-gradient-to-br from-[#EF4444] to-[#F87171]",
+    hoverColor: "group-hover:from-[#F87171] group-hover:to-[#EF4444]",
   },
   {
     icon: TreePine,
@@ -116,8 +116,8 @@ const DOMAINS: Domain[] = [
     description:
       "Connecting with nature, understanding agricultural practices, and promoting outdoor activities.",
     color: "from-[#A5C85A] to-[#2CA4A4]",
-    bgColor: "bg-[#A5C85A]/10",
-    hoverColor: "group-hover:bg-[#A5C85A]/20",
+    bgColor: "bg-gradient-to-br from-[#10B981] to-[#34D399]",
+    hoverColor: "group-hover:from-[#34D399] group-hover:to-[#10B981]",
   },
   {
     icon: Dumbbell,
@@ -125,16 +125,16 @@ const DOMAINS: Domain[] = [
     description:
       "Promoting physical fitness, healthy play, and exercise habits.",
     color: "from-[#5EC1E8] to-[#FFC94B]",
-    bgColor: "bg-[#5EC1E8]/10",
-    hoverColor: "group-hover:bg-[#5EC1E8]/20",
+    bgColor: "bg-gradient-to-br from-[#14B8A6] to-[#5EEAD4]",
+    hoverColor: "group-hover:from-[#5EEAD4] group-hover:to-[#14B8A6]",
   },
   {
     icon: Users,
     title: "Community and Leadership",
     description: "Developing community engagement and leadership skills.",
     color: "from-[#8B5FBF] to-[#A5C85A]",
-    bgColor: "bg-[#8B5FBF]/10",
-    hoverColor: "group-hover:bg-[#8B5FBF]/20",
+    bgColor: "bg-gradient-to-br from-[#8B5FBF] to-[#A855F7]",
+    hoverColor: "group-hover:from-[#A855F7] group-hover:to-[#8B5FBF]",
   },
   {
     icon: BookOpen,
@@ -142,8 +142,8 @@ const DOMAINS: Domain[] = [
     description:
       "Celebrating and preserving cultural heritage and linguistic diversity.",
     color: "from-[#2CA4A4] to-[#FFC94B]",
-    bgColor: "bg-[#2CA4A4]/10",
-    hoverColor: "group-hover:bg-[#2CA4A4]/20",
+    bgColor: "bg-gradient-to-br from-[#F97316] to-[#FB923C]",
+    hoverColor: "group-hover:from-[#FB923C] group-hover:to-[#F97316]",
   },
 ];
 
@@ -169,33 +169,87 @@ export const DomainsGrid: React.FC<DomainsGridProps> = ({
             className="block"
           >
             <div
-              className={`group relative p-6 bg-[#FAF7F2] hover:bg-white rounded-2xl border border-gray-100 hover:border-[#2CA4A4]/20 shadow-sm hover:shadow-xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 animate-fadeInUp cursor-pointer`}
+              className={`group relative p-6 ${domain.bgColor} ${domain.hoverColor} rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-700 transform hover:scale-110 hover:-rotate-1 animate-fadeInUp cursor-pointer overflow-hidden`}
               style={{ animationDelay: `${index * 0.1}s` }}
             >
-              {/* Icon container */}
-              <div
-                className={`relative w-14 h-14 ${domain.bgColor} ${domain.hoverColor} rounded-xl flex items-center justify-center mb-4 transition-all duration-300 group-hover:scale-110`}
-              >
-                <IconComponent className="w-7 h-7 text-[#2CA4A4] group-hover:text-[#2F3E3E] transition-colors duration-300" />
+              {/* Decorative pattern overlay */}
+              <div className="absolute inset-0 opacity-10">
+                <svg
+                  className="w-full h-full"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <defs>
+                    <pattern
+                      id={`pattern-${index}`}
+                      x="0"
+                      y="0"
+                      width="40"
+                      height="40"
+                      patternUnits="userSpaceOnUse"
+                    >
+                      <circle cx="5" cy="5" r="2" fill="white" opacity="0.3" />
+                      <circle
+                        cx="25"
+                        cy="15"
+                        r="1.5"
+                        fill="white"
+                        opacity="0.2"
+                      />
+                      <circle
+                        cx="15"
+                        cy="25"
+                        r="1"
+                        fill="white"
+                        opacity="0.4"
+                      />
+                      <circle
+                        cx="35"
+                        cy="35"
+                        r="1.5"
+                        fill="white"
+                        opacity="0.25"
+                      />
+                    </pattern>
+                  </defs>
+                  <rect
+                    width="100%"
+                    height="100%"
+                    fill={`url(#pattern-${index})`}
+                  />
+                </svg>
+              </div>
 
-                {/* Floating dot */}
-                <div className="absolute -top-1 -right-1 w-3 h-3 bg-[#FFC94B] rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-ping transition-opacity duration-300"></div>
+              {/* Sparkles decoration */}
+              <div className="absolute top-3 right-3 opacity-30 group-hover:opacity-50 transition-opacity duration-500">
+                <div className="w-2 h-2 bg-white rounded-full animate-ping"></div>
+                <div className="absolute top-1 left-2 w-1 h-1 bg-white rounded-full animate-pulse"></div>
+                <div className="absolute -top-1 left-1 w-1.5 h-1.5 bg-white rounded-full animate-bounce"></div>
+              </div>
+
+              {/* Icon container */}
+              <div className="relative w-16 h-16 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center mb-4 transition-all duration-500 group-hover:scale-125 group-hover:rotate-12 shadow-lg">
+                <IconComponent className="w-8 h-8 text-white drop-shadow-lg group-hover:scale-110 transition-transform duration-300" />
+
+                {/* Pulsing ring on hover */}
+                <div className="absolute inset-0 border-3 border-white/40 rounded-2xl opacity-0 group-hover:opacity-100 group-hover:scale-125 transition-all duration-500"></div>
               </div>
 
               {/* Content */}
-              <div className="space-y-3">
-                <h3 className="text-lg font-bold text-[#2F3E3E] group-hover:text-[#2CA4A4] transition-colors duration-300 leading-tight">
+              <div className="space-y-3 relative z-10">
+                <h3 className="text-lg font-bold text-white drop-shadow-md group-hover:scale-105 transition-transform duration-300 leading-tight">
                   {domain.title}
                 </h3>
-                <p className="text-sm text-[#2F3E3E]/70 group-hover:text-[#2F3E3E]/90 transition-colors duration-300 leading-relaxed">
+                <p className="text-sm text-white/90 group-hover:text-white transition-colors duration-300 leading-relaxed">
                   {domain.description}
                 </p>
               </div>
 
-              {/* Hover gradient overlay */}
-              <div
-                className={`absolute inset-0 bg-gradient-to-br ${domain.color} rounded-2xl opacity-0 group-hover:opacity-5 transition-opacity duration-500 pointer-events-none`}
-              ></div>
+              {/* Shine effect on hover */}
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 pointer-events-none"></div>
+
+              {/* Floating decorative blurs */}
+              <div className="absolute -bottom-3 -right-3 w-20 h-20 bg-white/10 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-700"></div>
+              <div className="absolute -top-3 -left-3 w-16 h-16 bg-white/10 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-700"></div>
 
               {/* Bottom accent line */}
               <div
@@ -235,14 +289,343 @@ const DomainsSection: React.FC = () => {
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center mb-16 animate-fadeInUp">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#2F3E3E] mb-6">
-            Our{" "}
-            <span className="bg-gradient-to-r from-[#2CA4A4] to-[#5EC1E8] bg-clip-text text-transparent">
+        <div className="text-center mb-16 animate-fadeInUp relative">
+          {/* Animated SVG Background for Kids */}
+          <div className="absolute inset-0 -z-10 overflow-hidden pointer-events-none">
+            <svg
+              className="absolute w-full h-full"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              {/* Floating Stars */}
+              <g className="animate-float">
+                <path
+                  d="M100,50 L105,65 L120,68 L110,80 L112,95 L100,88 L88,95 L90,80 L80,68 L95,65 Z"
+                  fill="#FFC94B"
+                  opacity="0.3"
+                >
+                  <animateTransform
+                    attributeName="transform"
+                    type="rotate"
+                    from="0 100 72"
+                    to="360 100 72"
+                    dur="8s"
+                    repeatCount="indefinite"
+                  />
+                </path>
+              </g>
+              <g className="animate-bounce-slow">
+                <path
+                  d="M800,100 L803,110 L813,112 L806,119 L808,129 L800,124 L792,129 L794,119 L787,112 L797,110 Z"
+                  fill="#5EC1E8"
+                  opacity="0.4"
+                >
+                  <animateTransform
+                    attributeName="transform"
+                    type="rotate"
+                    from="0 800 114"
+                    to="-360 800 114"
+                    dur="10s"
+                    repeatCount="indefinite"
+                  />
+                </path>
+              </g>
+
+              {/* Bouncing Balloons */}
+              <g className="animate-float-delayed">
+                <ellipse
+                  cx="200"
+                  cy="120"
+                  rx="18"
+                  ry="22"
+                  fill="#A855F7"
+                  opacity="0.3"
+                />
+                <path
+                  d="M200,142 Q195,155 190,165"
+                  stroke="#A855F7"
+                  strokeWidth="1.5"
+                  fill="none"
+                  opacity="0.3"
+                />
+                <animate
+                  attributeName="cy"
+                  values="120;100;120"
+                  dur="3s"
+                  repeatCount="indefinite"
+                />
+              </g>
+              <g>
+                <ellipse
+                  cx="950"
+                  cy="80"
+                  rx="16"
+                  ry="20"
+                  fill="#10B981"
+                  opacity="0.35"
+                />
+                <path
+                  d="M950,100 Q945,113 940,123"
+                  stroke="#10B981"
+                  strokeWidth="1.5"
+                  fill="none"
+                  opacity="0.35"
+                />
+                <animate
+                  attributeName="cy"
+                  values="80;60;80"
+                  dur="3.5s"
+                  repeatCount="indefinite"
+                />
+              </g>
+
+              {/* Happy Clouds */}
+              <g className="animate-float">
+                <ellipse
+                  cx="150"
+                  cy="40"
+                  rx="25"
+                  ry="15"
+                  fill="#5EC1E8"
+                  opacity="0.2"
+                />
+                <ellipse
+                  cx="135"
+                  cy="42"
+                  rx="18"
+                  ry="12"
+                  fill="#5EC1E8"
+                  opacity="0.2"
+                />
+                <ellipse
+                  cx="165"
+                  cy="42"
+                  rx="20"
+                  ry="13"
+                  fill="#5EC1E8"
+                  opacity="0.2"
+                />
+                <animate
+                  attributeName="cx"
+                  values="150;1200;150"
+                  dur="40s"
+                  repeatCount="indefinite"
+                />
+              </g>
+              <g>
+                <ellipse
+                  cx="700"
+                  cy="35"
+                  rx="28"
+                  ry="16"
+                  fill="#A5C85A"
+                  opacity="0.25"
+                />
+                <ellipse
+                  cx="682"
+                  cy="37"
+                  rx="20"
+                  ry="13"
+                  fill="#A5C85A"
+                  opacity="0.25"
+                />
+                <ellipse
+                  cx="718"
+                  cy="37"
+                  rx="22"
+                  ry="14"
+                  fill="#A5C85A"
+                  opacity="0.25"
+                />
+                <animate
+                  attributeName="cx"
+                  values="700;-100;700"
+                  dur="35s"
+                  repeatCount="indefinite"
+                />
+              </g>
+
+              {/* Rainbow Arc */}
+              <g opacity="0.15">
+                <path
+                  d="M50,150 Q300,50 550,150"
+                  stroke="#EF4444"
+                  strokeWidth="4"
+                  fill="none"
+                  strokeLinecap="round"
+                />
+                <path
+                  d="M50,155 Q300,55 550,155"
+                  stroke="#F59E0B"
+                  strokeWidth="4"
+                  fill="none"
+                  strokeLinecap="round"
+                />
+                <path
+                  d="M50,160 Q300,60 550,160"
+                  stroke="#FFC94B"
+                  strokeWidth="4"
+                  fill="none"
+                  strokeLinecap="round"
+                />
+                <path
+                  d="M50,165 Q300,65 550,165"
+                  stroke="#10B981"
+                  strokeWidth="4"
+                  fill="none"
+                  strokeLinecap="round"
+                />
+                <path
+                  d="M50,170 Q300,70 550,170"
+                  stroke="#2CA4A4"
+                  strokeWidth="4"
+                  fill="none"
+                  strokeLinecap="round"
+                />
+                <path
+                  d="M50,175 Q300,75 550,175"
+                  stroke="#5EC1E8"
+                  strokeWidth="4"
+                  fill="none"
+                  strokeLinecap="round"
+                />
+                <path
+                  d="M50,180 Q300,80 550,180"
+                  stroke="#8B5FBF"
+                  strokeWidth="4"
+                  fill="none"
+                  strokeLinecap="round"
+                />
+              </g>
+
+              {/* Flying Paper Airplanes */}
+              <g>
+                <path
+                  d="M400,90 L420,95 L415,100 L400,90 L415,100 L410,95 Z"
+                  fill="#2CA4A4"
+                  opacity="0.3"
+                >
+                  <animateTransform
+                    attributeName="transform"
+                    type="translate"
+                    values="0,0; 600,-50; 0,0"
+                    dur="12s"
+                    repeatCount="indefinite"
+                  />
+                  <animateTransform
+                    attributeName="transform"
+                    type="rotate"
+                    values="0 410 95; 15 410 95; 0 410 95"
+                    dur="2s"
+                    repeatCount="indefinite"
+                    additive="sum"
+                  />
+                </path>
+              </g>
+
+              {/* Twinkling Sparkles */}
+              <circle cx="300" cy="60" r="2" fill="#FFC94B">
+                <animate
+                  attributeName="opacity"
+                  values="0.2;1;0.2"
+                  dur="2s"
+                  repeatCount="indefinite"
+                />
+                <animate
+                  attributeName="r"
+                  values="2;3;2"
+                  dur="2s"
+                  repeatCount="indefinite"
+                />
+              </circle>
+              <circle cx="750" cy="120" r="2" fill="#A855F7">
+                <animate
+                  attributeName="opacity"
+                  values="0.3;1;0.3"
+                  dur="2.5s"
+                  repeatCount="indefinite"
+                />
+                <animate
+                  attributeName="r"
+                  values="2;3.5;2"
+                  dur="2.5s"
+                  repeatCount="indefinite"
+                />
+              </circle>
+              <circle cx="500" cy="45" r="2" fill="#5EC1E8">
+                <animate
+                  attributeName="opacity"
+                  values="0.2;1;0.2"
+                  dur="3s"
+                  repeatCount="indefinite"
+                />
+                <animate
+                  attributeName="r"
+                  values="2;3;2"
+                  dur="3s"
+                  repeatCount="indefinite"
+                />
+              </circle>
+
+              {/* Cute Smiley Faces */}
+              <g opacity="0.2">
+                <circle cx="850" cy="60" r="12" fill="#FFC94B" />
+                <circle cx="846" cy="57" r="2" fill="#2F3E3E" />
+                <circle cx="854" cy="57" r="2" fill="#2F3E3E" />
+                <path
+                  d="M846,63 Q850,66 854,63"
+                  stroke="#2F3E3E"
+                  strokeWidth="1.5"
+                  fill="none"
+                  strokeLinecap="round"
+                />
+                <animate
+                  attributeName="opacity"
+                  values="0.2;0.4;0.2"
+                  dur="4s"
+                  repeatCount="indefinite"
+                />
+              </g>
+
+              {/* Colorful Hearts */}
+              <g>
+                <path
+                  d="M250,100 C250,95 245,90 240,90 C235,90 230,95 230,100 C230,95 225,90 220,90 C215,90 210,95 210,100 C210,110 230,120 230,120 C230,120 250,110 250,100"
+                  fill="#EC4899"
+                  opacity="0.25"
+                >
+                  <animateTransform
+                    attributeName="transform"
+                    type="scale"
+                    values="1;1.2;1"
+                    dur="2s"
+                    repeatCount="indefinite"
+                    additive="sum"
+                  />
+                </path>
+              </g>
+            </svg>
+          </div>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 overflow-hidden">
+            <span className="inline-block text-[#2F3E3E] animate-slideInLeft hover:scale-110 transition-transform duration-300 cursor-pointer">
+              Our
+            </span>{" "}
+            <span
+              className="inline-block bg-gradient-to-r from-[#2CA4A4] to-[#5EC1E8] bg-clip-text text-transparent animate-typewriter hover:from-[#5EC1E8] hover:to-[#2CA4A4] transition-all duration-500 hover:scale-110 cursor-pointer"
+              style={{ animationDelay: "0.3s" }}
+            >
               12 Domains
             </span>{" "}
-            of Development
+            <span
+              className="inline-block text-[#2F3E3E] animate-slideInLeft hover:scale-110 transition-transform duration-300 cursor-pointer"
+              style={{ animationDelay: "0.6s" }}
+            >
+              of Development
+            </span>
           </h2>
+          <div
+            className="w-32 h-1 bg-gradient-to-r from-[#FFC94B] via-[#A5C85A] to-[#2CA4A4] mx-auto rounded-full mb-8 animate-expandWidth"
+            style={{ animationDelay: "0.9s" }}
+          ></div>
           <p className="text-lg text-[#2F3E3E]/80 max-w-3xl mx-auto mb-8">
             Finwit Kids goes beyond academics to nurture the whole child. Each
             domain is designed to be engaging, age-appropriate, and build on

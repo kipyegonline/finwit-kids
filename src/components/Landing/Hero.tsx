@@ -4,6 +4,536 @@ import { Play, ArrowRight, Sparkles, Heart, Star, Zap } from "lucide-react";
 const HeroSection: React.FC = () => {
   return (
     <section className="relative min-h-screen bg-gradient-to-br from-[#FAF7F2] via-[#5EC1E8]/5 to-[#A5C85A]/5 overflow-hidden">
+      {/* Magical Animated SVG Background - Full Width & Responsive */}
+      <div className="absolute inset-0 w-full h-full pointer-events-none overflow-hidden">
+        <svg
+          className="w-full h-full"
+          xmlns="http://www.w3.org/2000/svg"
+          preserveAspectRatio="xMidYMid slice"
+        >
+          <defs>
+            {/* Gradient Definitions */}
+            <linearGradient
+              id="sunGradient"
+              x1="0%"
+              y1="0%"
+              x2="100%"
+              y2="100%"
+            >
+              <stop
+                offset="0%"
+                style={{ stopColor: "#FFC94B", stopOpacity: 0.8 }}
+              />
+              <stop
+                offset="100%"
+                style={{ stopColor: "#F59E0B", stopOpacity: 0.6 }}
+              />
+            </linearGradient>
+            <linearGradient
+              id="cloudGradient"
+              x1="0%"
+              y1="0%"
+              x2="100%"
+              y2="0%"
+            >
+              <stop
+                offset="0%"
+                style={{ stopColor: "#FFFFFF", stopOpacity: 0.4 }}
+              />
+              <stop
+                offset="100%"
+                style={{ stopColor: "#5EC1E8", stopOpacity: 0.3 }}
+              />
+            </linearGradient>
+            <radialGradient id="bubbleGradient" cx="30%" cy="30%">
+              <stop
+                offset="0%"
+                style={{ stopColor: "#FFFFFF", stopOpacity: 0.8 }}
+              />
+              <stop
+                offset="100%"
+                style={{ stopColor: "#5EC1E8", stopOpacity: 0.3 }}
+              />
+            </radialGradient>
+          </defs>
+
+          {/* Animated Sun with Rays */}
+          <g opacity="0.3">
+            <circle cx="15%" cy="15%" r="40" fill="url(#sunGradient)">
+              <animate
+                attributeName="r"
+                values="40;45;40"
+                dur="4s"
+                repeatCount="indefinite"
+              />
+              <animate
+                attributeName="opacity"
+                values="0.8;1;0.8"
+                dur="4s"
+                repeatCount="indefinite"
+              />
+            </circle>
+            {/* Sun Rays */}
+            {[...Array(8)].map((_, i) => {
+              const angle = (i * 45 * Math.PI) / 180;
+              const x1 = 15 + Math.cos(angle) * 5;
+              const y1 = 15 + Math.sin(angle) * 5;
+              const x2 = 15 + Math.cos(angle) * 8;
+              const y2 = 15 + Math.sin(angle) * 8;
+              return (
+                <line
+                  key={i}
+                  x1={`${x1}%`}
+                  y1={`${y1}%`}
+                  x2={`${x2}%`}
+                  y2={`${y2}%`}
+                  stroke="#FFC94B"
+                  strokeWidth="3"
+                  strokeLinecap="round"
+                  opacity="0.6"
+                >
+                  <animateTransform
+                    attributeName="transform"
+                    type="rotate"
+                    from={`0 15 15`}
+                    to={`360 15 15`}
+                    dur="20s"
+                    repeatCount="indefinite"
+                  />
+                </line>
+              );
+            })}
+          </g>
+
+          {/* Floating Clouds - Multiple Layers */}
+          <g opacity="0.4">
+            {/* Cloud 1 */}
+            <g>
+              <ellipse
+                cx="20%"
+                cy="20%"
+                rx="60"
+                ry="30"
+                fill="url(#cloudGradient)"
+              />
+              <ellipse
+                cx="18%"
+                cy="22%"
+                rx="40"
+                ry="25"
+                fill="url(#cloudGradient)"
+              />
+              <ellipse
+                cx="22%"
+                cy="22%"
+                rx="45"
+                ry="28"
+                fill="url(#cloudGradient)"
+              />
+              <animateTransform
+                attributeName="transform"
+                type="translate"
+                values="0,0; 1500,0; 0,0"
+                dur="60s"
+                repeatCount="indefinite"
+              />
+            </g>
+            {/* Cloud 2 */}
+            <g>
+              <ellipse
+                cx="60%"
+                cy="15%"
+                rx="70"
+                ry="35"
+                fill="url(#cloudGradient)"
+              />
+              <ellipse
+                cx="57%"
+                cy="17%"
+                rx="50"
+                ry="30"
+                fill="url(#cloudGradient)"
+              />
+              <ellipse
+                cx="63%"
+                cy="17%"
+                rx="55"
+                ry="32"
+                fill="url(#cloudGradient)"
+              />
+              <animateTransform
+                attributeName="transform"
+                type="translate"
+                values="0,0; -1500,0; 0,0"
+                dur="70s"
+                repeatCount="indefinite"
+              />
+            </g>
+            {/* Cloud 3 - Small */}
+            <g opacity="0.6">
+              <ellipse
+                cx="80%"
+                cy="25%"
+                rx="45"
+                ry="22"
+                fill="url(#cloudGradient)"
+              />
+              <ellipse
+                cx="78%"
+                cy="26%"
+                rx="30"
+                ry="18"
+                fill="url(#cloudGradient)"
+              />
+              <ellipse
+                cx="82%"
+                cy="26%"
+                rx="35"
+                ry="20"
+                fill="url(#cloudGradient)"
+              />
+              <animateTransform
+                attributeName="transform"
+                type="translate"
+                values="0,0; 1200,0; 0,0"
+                dur="50s"
+                repeatCount="indefinite"
+              />
+            </g>
+          </g>
+
+          {/* Colorful Birds Flying */}
+          <g>
+            <path
+              d="M30,30 Q32,28 34,30 M34,30 Q36,28 38,30"
+              stroke="#8B5FBF"
+              strokeWidth="2"
+              fill="none"
+              strokeLinecap="round"
+              opacity="0.4"
+            >
+              <animateTransform
+                attributeName="transform"
+                type="translate"
+                values="0,0; 1400,-100; 0,0"
+                dur="25s"
+                repeatCount="indefinite"
+              />
+              <animate
+                attributeName="d"
+                values="M30,30 Q32,28 34,30 M34,30 Q36,28 38,30; M30,30 Q32,32 34,30 M34,30 Q36,32 38,30; M30,30 Q32,28 34,30 M34,30 Q36,28 38,30"
+                dur="0.5s"
+                repeatCount="indefinite"
+              />
+            </path>
+            <path
+              d="M70,40 Q72,38 74,40 M74,40 Q76,38 78,40"
+              stroke="#2CA4A4"
+              strokeWidth="2"
+              fill="none"
+              strokeLinecap="round"
+              opacity="0.4"
+            >
+              <animateTransform
+                attributeName="transform"
+                type="translate"
+                values="0,0; -1200,-80; 0,0"
+                dur="30s"
+                repeatCount="indefinite"
+              />
+              <animate
+                attributeName="d"
+                values="M70,40 Q72,38 74,40 M74,40 Q76,38 78,40; M70,40 Q72,42 74,40 M74,40 Q76,42 78,40; M70,40 Q72,38 74,40 M74,40 Q76,38 78,40"
+                dur="0.5s"
+                repeatCount="indefinite"
+              />
+            </path>
+          </g>
+
+          {/* Floating Bubbles with Realistic Animation */}
+          {[...Array(12)].map((_, i) => {
+            const cx = (i * 8 + 10) % 100;
+            const cy = 60 + (i % 3) * 15;
+            const r = 8 + (i % 4) * 3;
+            const dur = 8 + (i % 5) * 2;
+            return (
+              <circle
+                key={i}
+                cx={`${cx}%`}
+                cy={`${cy}%`}
+                r={r}
+                fill="url(#bubbleGradient)"
+                opacity="0.5"
+              >
+                <animate
+                  attributeName="cy"
+                  values={`${cy}%; ${cy - 80}%; ${cy}%`}
+                  dur={`${dur}s`}
+                  repeatCount="indefinite"
+                />
+                <animate
+                  attributeName="cx"
+                  values={`${cx}%; ${cx + 5}%; ${cx - 5}%; ${cx}%`}
+                  dur={`${dur * 0.7}s`}
+                  repeatCount="indefinite"
+                />
+                <animate
+                  attributeName="r"
+                  values={`${r}; ${r + 2}; ${r}`}
+                  dur={`${dur * 0.5}s`}
+                  repeatCount="indefinite"
+                />
+              </circle>
+            );
+          })}
+
+          {/* Shooting Stars */}
+          <g opacity="0.5">
+            <line
+              x1="10%"
+              y1="25%"
+              x2="15%"
+              y2="30%"
+              stroke="#FFC94B"
+              strokeWidth="2"
+              strokeLinecap="round"
+            >
+              <animate
+                attributeName="opacity"
+                values="0;1;0"
+                dur="3s"
+                repeatCount="indefinite"
+              />
+              <animateTransform
+                attributeName="transform"
+                type="translate"
+                values="0,0; 100,100; 0,0"
+                dur="3s"
+                repeatCount="indefinite"
+              />
+            </line>
+            <line
+              x1="85%"
+              y1="15%"
+              x2="90%"
+              y2="20%"
+              stroke="#5EC1E8"
+              strokeWidth="2"
+              strokeLinecap="round"
+            >
+              <animate
+                attributeName="opacity"
+                values="0;1;0"
+                dur="4s"
+                begin="1s"
+                repeatCount="indefinite"
+              />
+              <animateTransform
+                attributeName="transform"
+                type="translate"
+                values="0,0; 80,80; 0,0"
+                dur="4s"
+                begin="1s"
+                repeatCount="indefinite"
+              />
+            </line>
+          </g>
+
+          {/* Confetti Pieces */}
+          {[...Array(15)].map((_, i) => {
+            const colors = [
+              "#FFC94B",
+              "#5EC1E8",
+              "#8B5FBF",
+              "#A5C85A",
+              "#EC4899",
+            ];
+            const shapes = ["circle", "rect"];
+            const shape = shapes[i % 2];
+            const color = colors[i % colors.length];
+            const x = (i * 7 + 5) % 95;
+            const y = (i * 11) % 40;
+            const size = 3 + (i % 3);
+            const dur = 10 + (i % 8);
+
+            if (shape === "circle") {
+              return (
+                <circle
+                  key={`confetti-${i}`}
+                  cx={`${x}%`}
+                  cy={`${y}%`}
+                  r={size}
+                  fill={color}
+                  opacity="0.4"
+                >
+                  <animate
+                    attributeName="cy"
+                    values={`${y}%; ${y + 60}%; ${y}%`}
+                    dur={`${dur}s`}
+                    repeatCount="indefinite"
+                  />
+                  <animateTransform
+                    attributeName="transform"
+                    type="rotate"
+                    values={`0 ${x} ${y}; 360 ${x} ${y}`}
+                    dur={`${dur * 0.3}s`}
+                    repeatCount="indefinite"
+                  />
+                </circle>
+              );
+            } else {
+              return (
+                <rect
+                  key={`confetti-${i}`}
+                  x={`${x}%`}
+                  y={`${y}%`}
+                  width={size * 1.5}
+                  height={size}
+                  fill={color}
+                  opacity="0.4"
+                >
+                  <animate
+                    attributeName="y"
+                    values={`${y}%; ${y + 60}%; ${y}%`}
+                    dur={`${dur}s`}
+                    repeatCount="indefinite"
+                  />
+                  <animateTransform
+                    attributeName="transform"
+                    type="rotate"
+                    values={`0 ${x} ${y}; 360 ${x} ${y}`}
+                    dur={`${dur * 0.4}s`}
+                    repeatCount="indefinite"
+                  />
+                </rect>
+              );
+            }
+          })}
+
+          {/* Magical Sparkles */}
+          {[...Array(20)].map((_, i) => {
+            const cx = (i * 5 + 3) % 98;
+            const cy = (i * 7 + 10) % 90;
+            const dur = 2 + (i % 3);
+            return (
+              <g key={`sparkle-${i}`} opacity="0.6">
+                <circle cx={`${cx}%`} cy={`${cy}%`} r="2" fill="#FFC94B">
+                  <animate
+                    attributeName="opacity"
+                    values="0;1;0"
+                    dur={`${dur}s`}
+                    repeatCount="indefinite"
+                  />
+                  <animate
+                    attributeName="r"
+                    values="1;3;1"
+                    dur={`${dur}s`}
+                    repeatCount="indefinite"
+                  />
+                </circle>
+                <path
+                  d={`M${cx},${cy - 3} L${cx},${cy + 3} M${cx - 3},${cy} L${
+                    cx + 3
+                  },${cy}`}
+                  stroke="#FFC94B"
+                  strokeWidth="1"
+                >
+                  <animate
+                    attributeName="opacity"
+                    values="0;1;0"
+                    dur={`${dur}s`}
+                    repeatCount="indefinite"
+                  />
+                </path>
+              </g>
+            );
+          })}
+
+          {/* Bouncing Playground Ball */}
+          <g opacity="0.3">
+            <circle cx="90%" cy="70%" r="25" fill="#EC4899">
+              <animate
+                attributeName="cy"
+                values="70%;50%;70%"
+                dur="2s"
+                repeatCount="indefinite"
+              />
+            </circle>
+            <circle
+              cx="90%"
+              cy="70%"
+              r="25"
+              fill="none"
+              stroke="#FFFFFF"
+              strokeWidth="3"
+              opacity="0.6"
+            >
+              <animate
+                attributeName="cy"
+                values="70%;50%;70%"
+                dur="2s"
+                repeatCount="indefinite"
+              />
+            </circle>
+            <path
+              d="M90,45 Q90,70 90,95"
+              stroke="#FFFFFF"
+              strokeWidth="3"
+              opacity="0.6"
+            >
+              <animate
+                attributeName="d"
+                values="M90,45 Q90,70 90,95; M90,25 Q90,50 90,75; M90,45 Q90,70 90,95"
+                dur="2s"
+                repeatCount="indefinite"
+              />
+            </path>
+          </g>
+
+          {/* Paper Airplane Trail */}
+          <g opacity="0.4">
+            <path d="M5,60 L15,63 L12,68 L5,60 L12,68 L10,63 Z" fill="#2CA4A4">
+              <animateTransform
+                attributeName="transform"
+                type="translate"
+                values="0,0; 1300,-200; 0,0"
+                dur="15s"
+                repeatCount="indefinite"
+              />
+              <animateTransform
+                attributeName="transform"
+                type="rotate"
+                values="0 10 64; 20 10 64; 0 10 64"
+                dur="3s"
+                repeatCount="indefinite"
+                additive="sum"
+              />
+            </path>
+            {/* Dotted trail */}
+            {[...Array(8)].map((_, i) => (
+              <circle
+                key={`trail-${i}`}
+                cx="5"
+                cy="60"
+                r="1.5"
+                fill="#2CA4A4"
+                opacity="0.5"
+              >
+                <animateTransform
+                  attributeName="transform"
+                  type="translate"
+                  values={`${i * -20},${i * 10}; ${1300 + i * -20},${
+                    -200 + i * 10
+                  }; ${i * -20},${i * 10}`}
+                  dur="15s"
+                  repeatCount="indefinite"
+                />
+              </circle>
+            ))}
+          </g>
+        </svg>
+      </div>
+
       {/* Decorative Background Elements - Enhanced with Interactive Patterns */}
       <div className="absolute inset-0 pointer-events-none">
         {/* Subtle outline icons in background */}
