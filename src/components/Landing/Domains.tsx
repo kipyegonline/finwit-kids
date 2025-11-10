@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import type { LucideIcon } from "lucide-react";
 import {
@@ -269,6 +269,35 @@ export const DomainsGrid: React.FC<DomainsGridProps> = ({
 // Main DomainsSection Component
 const DomainsSection: React.FC = () => {
   const navigate = useNavigate();
+  const [isVisible, setIsVisible] = useState(false);
+  const headerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+          }
+        });
+      },
+      {
+        threshold: 0.2, // Trigger when 20% of the element is visible
+        rootMargin: "0px 0px -50px 0px", // Start animation slightly before element is fully in view
+      }
+    );
+
+    const currentRef = headerRef.current;
+    if (currentRef) {
+      observer.observe(currentRef);
+    }
+
+    return () => {
+      if (currentRef) {
+        observer.unobserve(currentRef);
+      }
+    };
+  }, []);
 
   return (
     <section className="py-20 bg-white relative overflow-hidden" id="domains">
@@ -289,7 +318,7 @@ const DomainsSection: React.FC = () => {
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center mb-16 animate-fadeInUp relative">
+        <div ref={headerRef} className="text-center mb-16 relative">
           {/* Animated SVG Background for Kids */}
           <div className="absolute inset-0 -z-10 overflow-hidden pointer-events-none">
             <svg
@@ -605,34 +634,62 @@ const DomainsSection: React.FC = () => {
               </g>
             </svg>
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 overflow-hidden">
-            <span className="inline-block text-[#2F3E3E] animate-slideInLeft hover:scale-110 transition-transform duration-300 cursor-pointer">
+          <h2
+            className={`text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 overflow-hidden transition-all duration-1000 ${
+              isVisible
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-10"
+            }`}
+          >
+            <span
+              className={`inline-block text-[#2F3E3E] hover:scale-110 transition-transform duration-300 cursor-pointer ${
+                isVisible ? "animate-slideInLeft" : ""
+              }`}
+            >
               Our
             </span>{" "}
             <span
-              className="inline-block bg-gradient-to-r from-[#2CA4A4] to-[#5EC1E8] bg-clip-text text-transparent animate-typewriter hover:from-[#5EC1E8] hover:to-[#2CA4A4] transition-all duration-500 hover:scale-110 cursor-pointer"
+              className={`inline-block bg-gradient-to-r from-[#2CA4A4] to-[#5EC1E8] bg-clip-text text-transparent hover:from-[#5EC1E8] hover:to-[#2CA4A4] transition-all duration-500 hover:scale-110 cursor-pointer ${
+                isVisible ? "animate-typewriter" : ""
+              }`}
               style={{ animationDelay: "0.3s" }}
             >
               12 Domains
             </span>{" "}
             <span
-              className="inline-block text-[#2F3E3E] animate-slideInLeft hover:scale-110 transition-transform duration-300 cursor-pointer"
+              className={`inline-block text-[#2F3E3E] hover:scale-110 transition-transform duration-300 cursor-pointer ${
+                isVisible ? "animate-slideInLeft" : ""
+              }`}
               style={{ animationDelay: "0.6s" }}
             >
               of Development
             </span>
           </h2>
           <div
-            className="w-32 h-1 bg-gradient-to-r from-[#FFC94B] via-[#A5C85A] to-[#2CA4A4] mx-auto rounded-full mb-8 animate-expandWidth"
+            className={`w-32 h-1 bg-gradient-to-r from-[#FFC94B] via-[#A5C85A] to-[#2CA4A4] mx-auto rounded-full mb-8 transition-all duration-1000 ${
+              isVisible
+                ? "animate-expandWidth opacity-100"
+                : "opacity-0 scale-x-0"
+            }`}
             style={{ animationDelay: "0.9s" }}
           ></div>
-          <p className="text-lg text-[#2F3E3E]/80 max-w-3xl mx-auto mb-8">
+          <p
+            className={`text-lg text-[#2F3E3E]/80 max-w-3xl mx-auto mb-8 transition-all duration-1000 delay-300 ${
+              isVisible
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-5"
+            }`}
+          >
             Finwit Kids goes beyond academics to nurture the whole child. Each
             domain is designed to be engaging, age-appropriate, and build on
             what children learned the year before. Choose individual domains or
             the full curriculum
           </p>
-          <div className="w-32 h-1 bg-gradient-to-r from-[#FFC94B] via-[#A5C85A] to-[#2CA4A4] mx-auto rounded-full"></div>
+          <div
+            className={`w-32 h-1 bg-gradient-to-r from-[#FFC94B] via-[#A5C85A] to-[#2CA4A4] mx-auto rounded-full transition-all duration-1000 delay-500 ${
+              isVisible ? "opacity-100 scale-x-100" : "opacity-0 scale-x-0"
+            }`}
+          ></div>
         </div>
 
         {/* Domains Grid - Using the reusable component */}

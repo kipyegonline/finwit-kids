@@ -1,8 +1,38 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Cross, Users, Clock, GraduationCap } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 const WhyFinwitKidsSection: React.FC = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const headerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+          }
+        });
+      },
+      {
+        threshold: 0.2, // Trigger when 20% of the element is visible
+        rootMargin: "0px 0px -50px 0px", // Start animation slightly before element is fully in view
+      }
+    );
+
+    const currentRef = headerRef.current;
+    if (currentRef) {
+      observer.observe(currentRef);
+    }
+
+    return () => {
+      if (currentRef) {
+        observer.unobserve(currentRef);
+      }
+    };
+  }, []);
+
   const features = [
     {
       icon: GraduationCap,
@@ -731,25 +761,45 @@ const WhyFinwitKidsSection: React.FC = () => {
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center mb-16 animate-fadeInUp">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 overflow-hidden">
-            <span className="inline-block text-[#2F3E3E] animate-slideInLeft hover:scale-110 transition-transform duration-300 cursor-pointer">
+        <div ref={headerRef} className="text-center mb-16">
+          <h2
+            className={`text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 overflow-hidden transition-all duration-1000 ${
+              isVisible
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-10"
+            }`}
+          >
+            <span
+              className={`inline-block text-[#2F3E3E] hover:scale-110 transition-transform duration-300 cursor-pointer ${
+                isVisible ? "animate-slideInLeft" : ""
+              }`}
+            >
               Why
             </span>{" "}
             <span
-              className="inline-block bg-gradient-to-r from-[#2CA4A4] to-[#5EC1E8] bg-clip-text text-transparent animate-typewriter hover:from-[#5EC1E8] hover:to-[#2CA4A4] transition-all duration-500 hover:scale-110 cursor-pointer"
+              className={`inline-block bg-gradient-to-r from-[#2CA4A4] to-[#5EC1E8] bg-clip-text text-transparent hover:from-[#5EC1E8] hover:to-[#2CA4A4] transition-all duration-500 hover:scale-110 cursor-pointer ${
+                isVisible ? "animate-typewriter" : ""
+              }`}
               style={{ animationDelay: "0.3s" }}
             >
               Finwit Kids
             </span>
             <span
-              className="inline-block text-[#2F3E3E] animate-bounceIn hover:scale-110 hover:rotate-12 transition-all duration-300 cursor-pointer"
+              className={`inline-block text-[#2F3E3E] hover:scale-110 hover:rotate-12 transition-all duration-300 cursor-pointer ${
+                isVisible ? "animate-bounceIn" : ""
+              }`}
               style={{ animationDelay: "0.8s" }}
             >
               ?
             </span>
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-[#FFC94B] to-[#A5C85A] mx-auto rounded-full animate-expandWidth"></div>
+          <div
+            className={`w-24 h-1 bg-gradient-to-r from-[#FFC94B] to-[#A5C85A] mx-auto rounded-full transition-all duration-1000 ${
+              isVisible
+                ? "animate-expandWidth opacity-100"
+                : "opacity-0 scale-x-0"
+            }`}
+          ></div>
         </div>
 
         {/* Features Grid */}
