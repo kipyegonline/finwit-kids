@@ -40,7 +40,7 @@ const Header: React.FC = () => {
     { name: "About Us", href: "/about-us", icon: Info },
     { name: "Programs", href: "/programs", icon: GraduationCap },
     { name: "Resources", href: "/resources", icon: BookOpen },
-    { name: "Community", href: "/community", icon: Users },
+    // { name: "Community", href: "/community", icon: Users },
   ];
 
   const actionNavItems = [

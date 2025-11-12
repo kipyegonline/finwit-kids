@@ -1,7 +1,69 @@
-import React from "react";
-import { Play, ArrowRight, Sparkles, Heart, Star, Zap } from "lucide-react";
+import React, { useState, useEffect } from "react";
+import CountUp from "react-countup";
+import {
+  ArrowRight,
+  Sparkles,
+  Heart,
+  Star,
+  Zap,
+  Play,
+  ChevronLeft,
+  ChevronRight,
+} from "lucide-react";
+import HeroImage from "@/assets/finwit_kids_hero.png";
+import HeroImage2 from "@/assets/finwit_kids_hero2.png";
+import HeroImage3 from "@/assets/finwit_kids_hero3.png";
+import HeroImage4 from "@/assets/finwit_kids_hero4.png";
 
 const HeroSection: React.FC = () => {
+  // Carousel state and auto-transition
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+
+  // Add your image paths here
+  const carouselImages = [HeroImage, HeroImage2, HeroImage3, HeroImage4];
+
+  // Navigation functions
+  const goToPrevious = () => {
+    setIsPaused(true);
+    setCurrentImageIndex((prevIndex) =>
+      prevIndex === 0 ? carouselImages.length - 1 : prevIndex - 1
+    );
+    // Resume auto-play after 3 seconds of inactivity
+    setTimeout(() => setIsPaused(false), 3000);
+  };
+
+  const goToNext = () => {
+    setIsPaused(true);
+    setCurrentImageIndex(
+      (prevIndex) => (prevIndex + 1) % carouselImages.length
+    );
+    // Resume auto-play after 3 seconds of inactivity
+    setTimeout(() => setIsPaused(false), 3000);
+  };
+
+  // Mouse enter/leave handlers
+  const handleMouseEnter = () => {
+    setIsPaused(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsPaused(false);
+  };
+
+  // Auto-transition effect
+  useEffect(() => {
+    if (isPaused) return;
+
+    const interval = setInterval(() => {
+      setCurrentImageIndex(
+        (prevIndex) => (prevIndex + 1) % carouselImages.length
+      );
+    }, 4000); // Change image every 4 seconds
+
+    return () => clearInterval(interval);
+  }, [carouselImages.length, isPaused]);
+
   return (
     <section className="relative min-h-screen bg-gradient-to-br from-[#FAF7F2] via-[#5EC1E8]/5 to-[#A5C85A]/5 overflow-hidden">
       {/* Magical Animated SVG Background - Full Width & Responsive */}
@@ -736,7 +798,12 @@ const HeroSection: React.FC = () => {
             <div className="flex flex-wrap gap-6 lg:gap-8 pt-6 lg:pt-8">
               <div className="group text-center bg-white/50 backdrop-blur-sm px-6 py-4 rounded-2xl hover:bg-white hover:shadow-lg transition-all duration-300 hover:scale-110 cursor-pointer">
                 <div className="text-3xl lg:text-4xl font-bold text-[#2CA4A4] group-hover:scale-125 transition-transform duration-300">
-                  9
+                  <CountUp
+                    end={9}
+                    duration={2.5}
+                    enableScrollSpy
+                    scrollSpyOnce
+                  />
                 </div>
                 <div className="text-xs lg:text-sm text-[#2F3E3E]/70 font-medium mt-1">
                   Life Domains
@@ -744,7 +811,14 @@ const HeroSection: React.FC = () => {
               </div>
               <div className="group text-center bg-white/50 backdrop-blur-sm px-6 py-4 rounded-2xl hover:bg-white hover:shadow-lg transition-all duration-300 hover:scale-110 cursor-pointer">
                 <div className="text-3xl lg:text-4xl font-bold text-[#A5C85A] group-hover:scale-125 transition-transform duration-300">
-                  4-18
+                  <CountUp
+                    start={4}
+                    end={18}
+                    duration={2.5}
+                    enableScrollSpy
+                    scrollSpyOnce
+                    separator="-"
+                  />
                 </div>
                 <div className="text-xs lg:text-sm text-[#2F3E3E]/70 font-medium mt-1">
                   Age Range
@@ -752,7 +826,13 @@ const HeroSection: React.FC = () => {
               </div>
               <div className="group text-center bg-white/50 backdrop-blur-sm px-6 py-4 rounded-2xl hover:bg-white hover:shadow-lg transition-all duration-300 hover:scale-110 cursor-pointer">
                 <div className="text-3xl lg:text-4xl font-bold text-[#8B5FBF] group-hover:scale-125 transition-transform duration-300">
-                  100%
+                  <CountUp
+                    end={100}
+                    duration={2.5}
+                    suffix="%"
+                    enableScrollSpy
+                    scrollSpyOnce
+                  />
                 </div>
                 <div className="text-xs lg:text-sm text-[#2F3E3E]/70 font-medium mt-1">
                   Holistic
@@ -765,7 +845,11 @@ const HeroSection: React.FC = () => {
           <div className="relative animate-fadeInRight group">
             <div className="relative rounded-3xl overflow-visible">
               {/* Main image container with hover effects */}
-              <div className="relative h-[400px] sm:h-[500px] lg:h-[550px] bg-gradient-to-br from-[#FAF7F2] to-[#5EC1E8]/10 rounded-[3rem] overflow-hidden shadow-2xl group-hover:shadow-3xl transition-all duration-500 group-hover:scale-[1.02]">
+              <div
+                className="relative h-[400px] sm:h-[500px] lg:h-[550px] bg-gradient-to-br from-[#FAF7F2] to-[#5EC1E8]/10 rounded-[3rem] overflow-hidden shadow-2xl group-hover:shadow-3xl transition-all duration-500 group-hover:scale-[1.02]"
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+              >
                 {/* Decorative gradient overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-transparent via-transparent to-white/10"></div>
 
@@ -775,26 +859,54 @@ const HeroSection: React.FC = () => {
                 <div className="absolute bottom-24 right-12 w-5 h-5 bg-[#A5C85A] rounded-full animate-bounce-delayed shadow-lg hover:scale-125 transition-transform duration-300 cursor-pointer"></div>
                 <div className="absolute top-1/3 right-16 w-6 h-6 bg-[#8B5FBF]/50 rounded-full animate-float hover:scale-125 transition-transform duration-300 cursor-pointer"></div>
 
-                {/* Central play button with enhanced interactivity */}
-                <div className="absolute inset-0 flex items-center justify-center group/play cursor-pointer">
-                  <div className="relative">
-                    {/* Pulsing rings */}
-                    <div className="absolute inset-0 w-28 h-28 bg-white/20 rounded-full animate-ping-slow"></div>
-                    <div className="absolute inset-0 w-28 h-28 bg-white/10 rounded-full animate-ping-slower"></div>
+                {/* Hero Image Carousel */}
+                <div className="relative -top-12 flex items-center justify-center p-8 h-full">
+                  {carouselImages.map((image, index) => (
+                    <img
+                      key={index}
+                      src={image}
+                      alt={`Finwit Kids learning experience ${index + 1}`}
+                      className={`absolute inset-0 w-full h-full object-contain transition-all duration-1000 ease-in-out ${
+                        index === currentImageIndex
+                          ? "opacity-100 scale-100"
+                          : "opacity-0 scale-95"
+                      }`}
+                    />
+                  ))}
+                </div>
 
-                    {/* Main play button */}
-                    <div className="relative w-28 h-28 bg-white/95 backdrop-blur-md rounded-full shadow-2xl flex items-center justify-center group-hover/play:bg-gradient-to-br group-hover/play:from-[#8B5FBF] group-hover/play:to-[#5EC1E8] transition-all duration-500 group-hover/play:scale-125 group-hover/play:rotate-12">
-                      <Play
-                        className="w-12 h-12 text-[#8B5FBF] group-hover/play:text-white group-hover/play:scale-110 transition-all duration-300 ml-1"
-                        fill="currentColor"
-                      />
-                    </div>
+                {/* Previous Arrow */}
+                <button
+                  onClick={goToPrevious}
+                  className="absolute left-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-white/90 backdrop-blur-sm rounded-full shadow-lg flex items-center justify-center hover:bg-[#8B5FBF] hover:text-white transition-all duration-300 group/arrow"
+                  aria-label="Previous image"
+                >
+                  <ChevronLeft className="w-6 h-6 text-[#2F3E3E] group-hover/arrow:text-white transition-colors" />
+                </button>
 
-                    {/* Text below button */}
-                    <p className="absolute top-full mt-6 left-1/2 -translate-x-1/2 text-sm font-semibold text-[#2F3E3E] whitespace-nowrap group-hover/play:text-[#8B5FBF] transition-colors duration-300">
-                      Watch Our Story
-                    </p>
-                  </div>
+                {/* Next Arrow */}
+                <button
+                  onClick={goToNext}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-white/90 backdrop-blur-sm rounded-full shadow-lg flex items-center justify-center hover:bg-[#8B5FBF] hover:text-white transition-all duration-300 group/arrow"
+                  aria-label="Next image"
+                >
+                  <ChevronRight className="w-6 h-6 text-[#2F3E3E] group-hover/arrow:text-white transition-colors" />
+                </button>
+
+                {/* Carousel Indicators */}
+                <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+                  {carouselImages.map((_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => setCurrentImageIndex(index)}
+                      className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+                        index === currentImageIndex
+                          ? "bg-[#8B5FBF] w-8"
+                          : "bg-white/50 hover:bg-white/80"
+                      }`}
+                      aria-label={`Go to image ${index + 1}`}
+                    />
+                  ))}
                 </div>
 
                 {/* Bottom decorative wave */}

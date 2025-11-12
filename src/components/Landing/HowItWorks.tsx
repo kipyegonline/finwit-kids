@@ -7,8 +7,8 @@ import {
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
-import sophia from "@/assets/sophia.jpg";
-import leo from "@/assets/leo.jpg";
+import sophia from "@/assets/sophia.png";
+import leo from "@/assets/leo.png";
 import { useNavigate } from "react-router-dom";
 const HowItWorksSection: React.FC = () => {
   const steps = [
