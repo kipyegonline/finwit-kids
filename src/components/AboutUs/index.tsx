@@ -19,11 +19,535 @@ import { useNavigate } from "react-router-dom";
 const VisionAndMission: React.FC = () => {
   return (
     <section className="py-16 bg-[#FAF7F2] relative overflow-hidden">
-      {/* Background decorative elements */}
-      <div className="absolute inset-0">
-        <div className="absolute top-10 right-10 w-32 h-32 bg-[#2CA4A4]/10 rounded-full blur-2xl animate-pulse"></div>
-        <div className="absolute bottom-20 left-10 w-24 h-24 bg-[#FFC94B]/10 rounded-full blur-xl animate-bounce"></div>
-        <div className="absolute top-1/2 right-1/4 w-3 h-3 bg-[#5EC1E8] rounded-full animate-ping"></div>
+      {/* Animated SVG Background - Vision & Mission Theme */}
+      <div className="absolute inset-0 w-full h-full pointer-events-none overflow-hidden">
+        <svg
+          className="w-full h-full"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 1200 800"
+          preserveAspectRatio="xMidYMid slice"
+        >
+          <defs>
+            {/* Gradient definitions */}
+            <linearGradient
+              id="visionGradient"
+              x1="0%"
+              y1="0%"
+              x2="100%"
+              y2="100%"
+            >
+              <stop
+                offset="0%"
+                style={{ stopColor: "#2CA4A4", stopOpacity: 0.4 }}
+              />
+              <stop
+                offset="100%"
+                style={{ stopColor: "#5EC1E8", stopOpacity: 0.3 }}
+              />
+            </linearGradient>
+            <linearGradient
+              id="missionGradient"
+              x1="0%"
+              y1="0%"
+              x2="100%"
+              y2="100%"
+            >
+              <stop
+                offset="0%"
+                style={{ stopColor: "#8B5FBF", stopOpacity: 0.4 }}
+              />
+              <stop
+                offset="100%"
+                style={{ stopColor: "#FFC94B", stopOpacity: 0.35 }}
+              />
+            </linearGradient>
+            <linearGradient
+              id="valueGradient"
+              x1="0%"
+              y1="0%"
+              x2="100%"
+              y2="0%"
+            >
+              <stop
+                offset="0%"
+                style={{ stopColor: "#A5C85A", stopOpacity: 0.4 }}
+              />
+              <stop
+                offset="100%"
+                style={{ stopColor: "#2CA4A4", stopOpacity: 0.35 }}
+              />
+            </linearGradient>
+            <radialGradient id="glowVision" cx="50%" cy="50%">
+              <stop
+                offset="0%"
+                style={{ stopColor: "#2CA4A4", stopOpacity: 0.3 }}
+              />
+              <stop
+                offset="100%"
+                style={{ stopColor: "#2CA4A4", stopOpacity: 0 }}
+              />
+            </radialGradient>
+            <radialGradient id="glowMission" cx="50%" cy="50%">
+              <stop
+                offset="0%"
+                style={{ stopColor: "#8B5FBF", stopOpacity: 0.3 }}
+              />
+              <stop
+                offset="100%"
+                style={{ stopColor: "#8B5FBF", stopOpacity: 0 }}
+              />
+            </radialGradient>
+          </defs>
+
+          {/* Floating Eye icons (Vision theme) */}
+          {[...Array(4)].map((_, i) => {
+            const x = 200 + i * 280;
+            const y = 150 + (i % 2) * 250;
+            const dur = 8 + i;
+            return (
+              <g key={`eye-${i}`} opacity="0.35">
+                {/* Eye outline */}
+                <ellipse
+                  cx={x}
+                  cy={y}
+                  rx="35"
+                  ry="22"
+                  fill="none"
+                  stroke="#2CA4A4"
+                  strokeWidth="2.5"
+                >
+                  <animate
+                    attributeName="opacity"
+                    values="0.3;0.6;0.3"
+                    dur={`${dur}s`}
+                    repeatCount="indefinite"
+                  />
+                  <animateTransform
+                    attributeName="transform"
+                    type="translate"
+                    values={`0,0; 0,-20; 0,0`}
+                    dur={`${dur}s`}
+                    repeatCount="indefinite"
+                  />
+                </ellipse>
+                {/* Pupil */}
+                <circle cx={x} cy={y} r="8" fill="#2CA4A4">
+                  <animate
+                    attributeName="r"
+                    values="8;10;8"
+                    dur={`${dur}s`}
+                    repeatCount="indefinite"
+                  />
+                  <animateTransform
+                    attributeName="transform"
+                    type="translate"
+                    values={`0,0; 0,-20; 0,0`}
+                    dur={`${dur}s`}
+                    repeatCount="indefinite"
+                  />
+                </circle>
+              </g>
+            );
+          })}
+
+          {/* Target icons (Mission theme) */}
+          {[...Array(5)].map((_, i) => {
+            const x = 150 + i * 240;
+            const y = 550 + (i % 2) * 150;
+            const dur = 7 + i * 0.5;
+            return (
+              <g key={`target-${i}`} opacity="0.4">
+                <circle
+                  cx={x}
+                  cy={y}
+                  r="30"
+                  fill="none"
+                  stroke="#8B5FBF"
+                  strokeWidth="2.5"
+                >
+                  <animate
+                    attributeName="r"
+                    values="30;35;30"
+                    dur={`${dur}s`}
+                    repeatCount="indefinite"
+                  />
+                </circle>
+                <circle
+                  cx={x}
+                  cy={y}
+                  r="20"
+                  fill="none"
+                  stroke="#8B5FBF"
+                  strokeWidth="2"
+                >
+                  <animate
+                    attributeName="r"
+                    values="20;23;20"
+                    dur={`${dur}s`}
+                    repeatCount="indefinite"
+                  />
+                </circle>
+                <circle cx={x} cy={y} r="10" fill="#8B5FBF">
+                  <animate
+                    attributeName="r"
+                    values="10;12;10"
+                    dur={`${dur}s`}
+                    repeatCount="indefinite"
+                  />
+                  <animate
+                    attributeName="opacity"
+                    values="0.5;0.8;0.5"
+                    dur={`${dur}s`}
+                    repeatCount="indefinite"
+                  />
+                </circle>
+                <animateTransform
+                  attributeName="transform"
+                  type="translate"
+                  values={`0,0; 0,15; 0,0`}
+                  dur={`${dur}s`}
+                  repeatCount="indefinite"
+                />
+              </g>
+            );
+          })}
+
+          {/* Lightbulb icons (Innovation theme) */}
+          {[...Array(6)].map((_, i) => {
+            const x = (i * 210 + 120) % 1080;
+            const y = (i * 140 + 200) % 650;
+            const dur = 6 + i;
+            return (
+              <g key={`bulb-${i}`} opacity="0.35">
+                {/* Bulb */}
+                <ellipse
+                  cx={x}
+                  cy={y}
+                  rx="18"
+                  ry="22"
+                  fill="url(#missionGradient)"
+                >
+                  <animate
+                    attributeName="opacity"
+                    values="0.3;0.7;0.3"
+                    dur={`${dur}s`}
+                    repeatCount="indefinite"
+                  />
+                </ellipse>
+                {/* Base */}
+                <rect
+                  x={x - 10}
+                  y={y + 18}
+                  width="20"
+                  height="10"
+                  rx="2"
+                  fill="#FFC94B"
+                  opacity="0.6"
+                >
+                  <animate
+                    attributeName="opacity"
+                    values="0.4;0.8;0.4"
+                    dur={`${dur}s`}
+                    repeatCount="indefinite"
+                  />
+                </rect>
+                {/* Glow lines */}
+                <line
+                  x1={x - 25}
+                  y1={y - 10}
+                  x2={x - 35}
+                  y2={y - 15}
+                  stroke="#FFC94B"
+                  strokeWidth="2.5"
+                >
+                  <animate
+                    attributeName="opacity"
+                    values="0;0.8;0"
+                    dur={`${dur}s`}
+                    repeatCount="indefinite"
+                  />
+                </line>
+                <line
+                  x1={x + 25}
+                  y1={y - 10}
+                  x2={x + 35}
+                  y2={y - 15}
+                  stroke="#FFC94B"
+                  strokeWidth="2.5"
+                >
+                  <animate
+                    attributeName="opacity"
+                    values="0;0.8;0"
+                    dur={`${dur}s`}
+                    repeatCount="indefinite"
+                  />
+                </line>
+                <line
+                  x1={x}
+                  y1={y - 30}
+                  x2={x}
+                  y2={y - 40}
+                  stroke="#FFC94B"
+                  strokeWidth="2.5"
+                >
+                  <animate
+                    attributeName="opacity"
+                    values="0;0.8;0"
+                    dur={`${dur}s`}
+                    repeatCount="indefinite"
+                  />
+                </line>
+              </g>
+            );
+          })}
+
+          {/* Award stars (Excellence theme) */}
+          {[...Array(12)].map((_, i) => {
+            const x = (i * 150 + 80) % 1120;
+            const y = (i * 95 + 120) % 680;
+            const size = 10 + (i % 3) * 5;
+            const dur = 5 + (i % 4);
+            return (
+              <g key={`award-star-${i}`} opacity="0.45">
+                <polygon
+                  points={`${x},${y - size} ${x + size * 0.3},${
+                    y - size * 0.3
+                  } ${x + size},${y} ${x + size * 0.3},${y + size * 0.3} ${x},${
+                    y + size
+                  } ${x - size * 0.3},${y + size * 0.3} ${x - size},${y} ${
+                    x - size * 0.3
+                  },${y - size * 0.3}`}
+                  fill="#FFC94B"
+                  stroke="#FFC94B"
+                  strokeWidth="1"
+                >
+                  <animateTransform
+                    attributeName="transform"
+                    type="rotate"
+                    from={`0 ${x} ${y}`}
+                    to={`360 ${x} ${y}`}
+                    dur={`${dur}s`}
+                    repeatCount="indefinite"
+                  />
+                  <animate
+                    attributeName="opacity"
+                    values="0.3;0.8;0.3"
+                    dur={`${dur}s`}
+                    repeatCount="indefinite"
+                  />
+                </polygon>
+              </g>
+            );
+          })}
+
+          {/* Connected hearts (Value-driven theme) */}
+          {[...Array(4)].map((_, i) => {
+            const x = 250 + i * 270;
+            const y = 350;
+            const dur = 7 + i;
+            return (
+              <g key={`heart-${i}`} opacity="0.4">
+                <path
+                  d={`M ${x} ${y + 12} C ${x} ${y} ${x - 12} ${y - 12} ${
+                    x - 12
+                  } ${y - 12} C ${x - 12} ${y - 18} ${x - 5} ${y - 24} ${x} ${
+                    y - 18
+                  } C ${x + 5} ${y - 24} ${x + 12} ${y - 18} ${x + 12} ${
+                    y - 12
+                  } C ${x + 12} ${y - 12} ${x} ${y} ${x} ${y + 12} Z`}
+                  fill="#EC4899"
+                  stroke="#EC4899"
+                  strokeWidth="1.5"
+                >
+                  <animate
+                    attributeName="opacity"
+                    values="0.3;0.7;0.3"
+                    dur={`${dur}s`}
+                    repeatCount="indefinite"
+                  />
+                  <animateTransform
+                    attributeName="transform"
+                    type="scale"
+                    values="1;1.2;1"
+                    dur={`${dur}s`}
+                    repeatCount="indefinite"
+                    additive="sum"
+                  />
+                </path>
+              </g>
+            );
+          })}
+
+          {/* Flowing path lines (Journey/Mission) */}
+          <path
+            d="M 100,400 Q 300,350 500,400 T 900,400 T 1100,400"
+            stroke="#2CA4A4"
+            strokeWidth="3"
+            fill="none"
+            opacity="0.35"
+            strokeDasharray="12,8"
+          >
+            <animate
+              attributeName="d"
+              values="M 100,400 Q 300,350 500,400 T 900,400 T 1100,400; M 100,400 Q 300,450 500,400 T 900,400 T 1100,400; M 100,400 Q 300,350 500,400 T 900,400 T 1100,400"
+              dur="10s"
+              repeatCount="indefinite"
+            />
+            <animate
+              attributeName="stroke-dashoffset"
+              from="0"
+              to="20"
+              dur="2s"
+              repeatCount="indefinite"
+            />
+          </path>
+
+          {/* Glowing orbs for ambiance */}
+          <circle cx="200" cy="180" r="120" fill="url(#glowVision)">
+            <animate
+              attributeName="r"
+              values="120;150;120"
+              dur="8s"
+              repeatCount="indefinite"
+            />
+          </circle>
+          <circle cx="1000" cy="620" r="110" fill="url(#glowMission)">
+            <animate
+              attributeName="r"
+              values="110;140;110"
+              dur="7s"
+              repeatCount="indefinite"
+            />
+          </circle>
+          <circle cx="600" cy="400" r="100" fill="#A5C85A" opacity="0.15">
+            <animate
+              attributeName="r"
+              values="100;130;100"
+              dur="9s"
+              repeatCount="indefinite"
+            />
+          </circle>
+
+          {/* Sparkle crosses */}
+          {[...Array(20)].map((_, i) => {
+            const cx = (i * 85 + 60) % 1140;
+            const cy = (i * 67 + 90) % 710;
+            const dur = 3 + (i % 4) * 0.5;
+            return (
+              <g key={`sparkle-${i}`} opacity="0.5">
+                <circle cx={cx} cy={cy} r="2.5" fill="#5EC1E8">
+                  <animate
+                    attributeName="opacity"
+                    values="0;1;0"
+                    dur={`${dur}s`}
+                    repeatCount="indefinite"
+                  />
+                  <animate
+                    attributeName="r"
+                    values="2.5;5;2.5"
+                    dur={`${dur}s`}
+                    repeatCount="indefinite"
+                  />
+                </circle>
+                <line
+                  x1={cx}
+                  y1={cy - 8}
+                  x2={cx}
+                  y2={cy + 8}
+                  stroke="#5EC1E8"
+                  strokeWidth="1.5"
+                >
+                  <animate
+                    attributeName="opacity"
+                    values="0;1;0"
+                    dur={`${dur}s`}
+                    repeatCount="indefinite"
+                  />
+                </line>
+                <line
+                  x1={cx - 8}
+                  y1={cy}
+                  x2={cx + 8}
+                  y2={cy}
+                  stroke="#5EC1E8"
+                  strokeWidth="1.5"
+                >
+                  <animate
+                    attributeName="opacity"
+                    values="0;1;0"
+                    dur={`${dur}s`}
+                    repeatCount="indefinite"
+                  />
+                </line>
+              </g>
+            );
+          })}
+
+          {/* Rising arrows (Growth/Progress) */}
+          {[...Array(5)].map((_, i) => {
+            const x = 200 + i * 200;
+            const dur = 8 + i;
+            return (
+              <g key={`arrow-${i}`} opacity="0.4">
+                <path
+                  d={`M${x},700 L${x},600 M${x - 10},615 L${x},600 L${
+                    x + 10
+                  },615`}
+                  stroke="#A5C85A"
+                  strokeWidth="3"
+                  fill="none"
+                  strokeLinecap="round"
+                >
+                  <animateTransform
+                    attributeName="transform"
+                    type="translate"
+                    values={`0,0; 0,-650; 0,0`}
+                    dur={`${dur}s`}
+                    repeatCount="indefinite"
+                  />
+                  <animate
+                    attributeName="opacity"
+                    values="0;0.7;0"
+                    dur={`${dur}s`}
+                    repeatCount="indefinite"
+                  />
+                </path>
+              </g>
+            );
+          })}
+
+          {/* Circular dots pattern */}
+          {[...Array(16)].map((_, i) => {
+            const angle = (i * 22.5 * Math.PI) / 180;
+            const cx = 600 + Math.cos(angle) * 250;
+            const cy = 400 + Math.sin(angle) * 250;
+            return (
+              <circle
+                key={`dot-${i}`}
+                cx={cx}
+                cy={cy}
+                r="4"
+                fill="#8B5FBF"
+                opacity="0.4"
+              >
+                <animate
+                  attributeName="r"
+                  values="4;7;4"
+                  dur="6s"
+                  begin={`${i * 0.3}s`}
+                  repeatCount="indefinite"
+                />
+                <animate
+                  attributeName="opacity"
+                  values="0.3;0.7;0.3"
+                  dur="6s"
+                  begin={`${i * 0.3}s`}
+                  repeatCount="indefinite"
+                />
+              </circle>
+            );
+          })}
+        </svg>
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -223,11 +747,344 @@ const VisionAndMission: React.FC = () => {
 const OurPhilosophy: React.FC = () => {
   return (
     <section className="py-16 bg-white relative overflow-hidden">
-      {/* Background decorative elements */}
-      <div className="absolute inset-0">
-        <div className="absolute top-20 left-10 w-40 h-40 bg-[#A5C85A]/5 rounded-full blur-2xl"></div>
-        <div className="absolute bottom-10 right-10 w-32 h-32 bg-[#8B5FBF]/5 rounded-full blur-2xl"></div>
-        <div className="absolute top-1/2 left-1/4 w-2 h-2 bg-[#FFC94B] rounded-full animate-bounce"></div>
+      {/* Animated SVG Background - Philosophy Theme */}
+      <div className="absolute inset-0 w-full h-full pointer-events-none overflow-hidden">
+        <svg
+          className="w-full h-full"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 1200 800"
+          preserveAspectRatio="xMidYMid slice"
+        >
+          <defs>
+            {/* Gradient definitions */}
+            <linearGradient id="philoGradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style={{ stopColor: "#A5C85A", stopOpacity: 0.4 }} />
+              <stop offset="100%" style={{ stopColor: "#8B5FBF", stopOpacity: 0.35 }} />
+            </linearGradient>
+            <linearGradient id="philoGradient2" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" style={{ stopColor: "#FFC94B", stopOpacity: 0.4 }} />
+              <stop offset="100%" style={{ stopColor: "#2CA4A4", stopOpacity: 0.35 }} />
+            </linearGradient>
+            <radialGradient id="glowPhilo" cx="50%" cy="50%">
+              <stop offset="0%" style={{ stopColor: "#A5C85A", stopOpacity: 0.25 }} />
+              <stop offset="100%" style={{ stopColor: "#A5C85A", stopOpacity: 0 }} />
+            </radialGradient>
+            <radialGradient id="glowWisdom" cx="50%" cy="50%">
+              <stop offset="0%" style={{ stopColor: "#8B5FBF", stopOpacity: 0.25 }} />
+              <stop offset="100%" style={{ stopColor: "#8B5FBF", stopOpacity: 0 }} />
+            </radialGradient>
+          </defs>
+
+          {/* Brain/thinking icons (Critical Thinking) */}
+          {[...Array(5)].map((_, i) => {
+            const x = 180 + i * 240;
+            const y = 200 + (i % 2) * 250;
+            const dur = 7 + i * 0.5;
+            return (
+              <g key={`brain-${i}`} opacity="0.4">
+                {/* Brain outline */}
+                <ellipse cx={x} cy={y} rx="30" ry="35" fill="none" stroke="#8B5FBF" strokeWidth="2.5">
+                  <animate attributeName="opacity" values="0.3;0.7;0.3" dur={`${dur}s`} repeatCount="indefinite" />
+                </ellipse>
+                {/* Brain segments */}
+                <path
+                  d={`M${x - 15},${y - 10} Q${x},${y - 5} ${x + 15},${y - 10}`}
+                  stroke="#8B5FBF"
+                  strokeWidth="2"
+                  fill="none"
+                >
+                  <animate attributeName="opacity" values="0.3;0.7;0.3" dur={`${dur}s`} repeatCount="indefinite" />
+                </path>
+                <path
+                  d={`M${x - 15},${y + 10} Q${x},${y + 5} ${x + 15},${y + 10}`}
+                  stroke="#8B5FBF"
+                  strokeWidth="2"
+                  fill="none"
+                >
+                  <animate attributeName="opacity" values="0.3;0.7;0.3" dur={`${dur}s`} repeatCount="indefinite" />
+                </path>
+                <animateTransform
+                  attributeName="transform"
+                  type="translate"
+                  values={`0,0; 0,-15; 0,0`}
+                  dur={`${dur}s`}
+                  repeatCount="indefinite"
+                />
+              </g>
+            );
+          })}
+
+          {/* Palette/creativity icons (Creativity) */}
+          {[...Array(6)].map((_, i) => {
+            const x = (i * 200 + 140) % 1060;
+            const y = (i * 130 + 180) % 640;
+            const dur = 8 + i;
+            return (
+              <g key={`palette-${i}`} opacity="0.35">
+                {/* Palette shape */}
+                <ellipse cx={x} cy={y} rx="28" ry="20" fill="url(#philoGradient1)" opacity="0.5">
+                  <animate attributeName="opacity" values="0.3;0.6;0.3" dur={`${dur}s`} repeatCount="indefinite" />
+                </ellipse>
+                {/* Paint dots */}
+                <circle cx={x - 12} cy={y - 6} r="4" fill="#FFC94B">
+                  <animate attributeName="r" values="4;6;4" dur={`${dur}s`} repeatCount="indefinite" />
+                </circle>
+                <circle cx={x + 8} cy={y - 4} r="4" fill="#2CA4A4">
+                  <animate attributeName="r" values="4;6;4" dur={`${dur}s`} begin="0.3s" repeatCount="indefinite" />
+                </circle>
+                <circle cx={x - 6} cy={y + 8} r="4" fill="#EC4899">
+                  <animate attributeName="r" values="4;6;4" dur={`${dur}s`} begin="0.6s" repeatCount="indefinite" />
+                </circle>
+                <animateTransform
+                  attributeName="transform"
+                  type="rotate"
+                  from={`0 ${x} ${y}`}
+                  to={`360 ${x} ${y}`}
+                  dur={`${dur}s`}
+                  repeatCount="indefinite"
+                />
+              </g>
+            );
+          })}
+
+          {/* Hearts with pulse (Emotional Intelligence) */}
+          {[...Array(8)].map((_, i) => {
+            const x = (i * 180 + 120) % 1080;
+            const y = (i * 110 + 150) % 650;
+            const dur = 6 + i * 0.5;
+            return (
+              <g key={`emotion-heart-${i}`} opacity="0.4">
+                <path
+                  d={`M ${x} ${y + 10} C ${x} ${y} ${x - 10} ${y - 10} ${x - 10} ${y - 10} C ${x - 10} ${y - 15} ${x - 4} ${y - 20} ${x} ${y - 15} C ${x + 4} ${y - 20} ${x + 10} ${y - 15} ${x + 10} ${y - 10} C ${x + 10} ${y - 10} ${x} ${y} ${x} ${y + 10} Z`}
+                  fill="#EC4899"
+                  stroke="#EC4899"
+                  strokeWidth="1.5"
+                >
+                  <animate attributeName="opacity" values="0.3;0.7;0.3" dur={`${dur}s`} repeatCount="indefinite" />
+                  <animateTransform
+                    attributeName="transform"
+                    type="scale"
+                    values="1;1.3;1"
+                    dur={`${dur}s`}
+                    repeatCount="indefinite"
+                    additive="sum"
+                  />
+                </path>
+                {/* Pulse rings */}
+                <circle cx={x} cy={y} r="15" fill="none" stroke="#EC4899" strokeWidth="2" opacity="0.3">
+                  <animate attributeName="r" values="15;25;15" dur={`${dur}s`} repeatCount="indefinite" />
+                  <animate attributeName="opacity" values="0.5;0;0.5" dur={`${dur}s`} repeatCount="indefinite" />
+                </circle>
+              </g>
+            );
+          })}
+
+          {/* Crosses (Christian Values) */}
+          {[...Array(10)].map((_, i) => {
+            const x = (i * 140 + 100) % 1100;
+            const y = (i * 90 + 130) % 670;
+            const dur = 5 + i * 0.5;
+            return (
+              <g key={`cross-${i}`} opacity="0.4">
+                <line x1={x} y1={y - 18} x2={x} y2={y + 18} stroke="#2CA4A4" strokeWidth="3" strokeLinecap="round">
+                  <animate attributeName="opacity" values="0.3;0.7;0.3" dur={`${dur}s`} repeatCount="indefinite" />
+                </line>
+                <line x1={x - 12} y1={y - 6} x2={x + 12} y2={y - 6} stroke="#2CA4A4" strokeWidth="3" strokeLinecap="round">
+                  <animate attributeName="opacity" values="0.3;0.7;0.3" dur={`${dur}s`} repeatCount="indefinite" />
+                </line>
+                <circle cx={x} cy={y} r="20" fill="none" stroke="#2CA4A4" strokeWidth="1.5" opacity="0.2">
+                  <animate attributeName="r" values="20;25;20" dur={`${dur}s`} repeatCount="indefinite" />
+                  <animate attributeName="opacity" values="0.3;0;0.3" dur={`${dur}s`} repeatCount="indefinite" />
+                </circle>
+              </g>
+            );
+          })}
+
+          {/* Shield icons (Integrity) */}
+          {[...Array(5)].map((_, i) => {
+            const x = 220 + i * 220;
+            const y = 450 + (i % 2) * 180;
+            const dur = 7 + i;
+            return (
+              <g key={`shield-${i}`} opacity="0.35">
+                <path
+                  d={`M${x},${y - 25} L${x + 18},${y - 18} L${x + 18},${y + 8} Q${x + 18},${y + 20} ${x},${y + 30} Q${x - 18},${y + 20} ${x - 18},${y + 8} L${x - 18},${y - 18} Z`}
+                  fill="url(#philoGradient2)"
+                  stroke="#FFC94B"
+                  strokeWidth="2"
+                >
+                  <animate attributeName="opacity" values="0.3;0.6;0.3" dur={`${dur}s`} repeatCount="indefinite" />
+                  <animateTransform
+                    attributeName="transform"
+                    type="translate"
+                    values={`0,0; 0,-10; 0,0`}
+                    dur={`${dur}s`}
+                    repeatCount="indefinite"
+                  />
+                </path>
+                {/* Check mark inside shield */}
+                <path
+                  d={`M${x - 8},${y} L${x - 2},${y + 8} L${x + 10},${y - 8}`}
+                  stroke="#FFC94B"
+                  strokeWidth="2.5"
+                  fill="none"
+                  strokeLinecap="round"
+                >
+                  <animate attributeName="opacity" values="0.4;0.8;0.4" dur={`${dur}s`} repeatCount="indefinite" />
+                  <animateTransform
+                    attributeName="transform"
+                    type="translate"
+                    values={`0,0; 0,-10; 0,0`}
+                    dur={`${dur}s`}
+                    repeatCount="indefinite"
+                  />
+                </path>
+              </g>
+            );
+          })}
+
+          {/* Connected people icons (Community) */}
+          {[...Array(4)].map((_, i) => {
+            const x = 280 + i * 260;
+            const y = 330;
+            const dur = 8 + i;
+            return (
+              <g key={`community-${i}`} opacity="0.35">
+                {/* Person 1 */}
+                <circle cx={x - 15} cy={y} r="8" fill="#5EC1E8">
+                  <animate attributeName="opacity" values="0.4;0.7;0.4" dur={`${dur}s`} repeatCount="indefinite" />
+                </circle>
+                <path
+                  d={`M${x - 15},${y + 8} L${x - 15},${y + 20} M${x - 22},${y + 15} L${x - 8},${y + 15}`}
+                  stroke="#5EC1E8"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                >
+                  <animate attributeName="opacity" values="0.4;0.7;0.4" dur={`${dur}s`} repeatCount="indefinite" />
+                </path>
+                {/* Person 2 */}
+                <circle cx={x + 15} cy={y} r="8" fill="#5EC1E8">
+                  <animate attributeName="opacity" values="0.4;0.7;0.4" dur={`${dur}s`} begin="0.3s" repeatCount="indefinite" />
+                </circle>
+                <path
+                  d={`M${x + 15},${y + 8} L${x + 15},${y + 20} M${x + 8},${y + 15} L${x + 22},${y + 15}`}
+                  stroke="#5EC1E8"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                >
+                  <animate attributeName="opacity" values="0.4;0.7;0.4" dur={`${dur}s`} begin="0.3s" repeatCount="indefinite" />
+                </path>
+                {/* Connection line */}
+                <line x1={x - 15} y1={y + 15} x2={x + 15} y2={y + 15} stroke="#5EC1E8" strokeWidth="2" strokeDasharray="4,4">
+                  <animate attributeName="stroke-dashoffset" from="0" to="8" dur="2s" repeatCount="indefinite" />
+                </line>
+              </g>
+            );
+          })}
+
+          {/* Book icons (Learning/Education) */}
+          {[...Array(7)].map((_, i) => {
+            const x = (i * 190 + 160) % 1040;
+            const y = (i * 120 + 190) % 610;
+            const dur = 6 + i * 0.5;
+            return (
+              <g key={`book-${i}`} opacity="0.35">
+                <rect x={x - 16} y={y - 12} width="32" height="24" rx="2" fill="url(#philoGradient1)" stroke="#A5C85A" strokeWidth="2">
+                  <animate attributeName="opacity" values="0.3;0.6;0.3" dur={`${dur}s`} repeatCount="indefinite" />
+                </rect>
+                <line x1={x - 10} y1={y - 6} x2={x + 10} y2={y - 6} stroke="#A5C85A" strokeWidth="1.5" />
+                <line x1={x - 10} y1={y} x2={x + 10} y2={y} stroke="#A5C85A" strokeWidth="1.5" />
+                <line x1={x - 10} y1={y + 6} x2={x + 10} y2={y + 6} stroke="#A5C85A" strokeWidth="1.5" />
+                <animateTransform
+                  attributeName="transform"
+                  type="translate"
+                  values={`0,0; 0,20; 0,0`}
+                  dur={`${dur}s`}
+                  repeatCount="indefinite"
+                />
+              </g>
+            );
+          })}
+
+          {/* Wavy thought lines */}
+          <path
+            d="M 50,300 Q 250,250 450,300 T 850,300 T 1150,300"
+            stroke="#8B5FBF"
+            strokeWidth="2.5"
+            fill="none"
+            opacity="0.3"
+            strokeDasharray="10,10"
+          >
+            <animate
+              attributeName="d"
+              values="M 50,300 Q 250,250 450,300 T 850,300 T 1150,300; M 50,300 Q 250,350 450,300 T 850,300 T 1150,300; M 50,300 Q 250,250 450,300 T 850,300 T 1150,300"
+              dur="9s"
+              repeatCount="indefinite"
+            />
+            <animate attributeName="stroke-dashoffset" from="0" to="20" dur="2s" repeatCount="indefinite" />
+          </path>
+          <path
+            d="M 100,550 Q 300,500 500,550 T 900,550 T 1100,550"
+            stroke="#A5C85A"
+            strokeWidth="2.5"
+            fill="none"
+            opacity="0.3"
+            strokeDasharray="10,10"
+          >
+            <animate
+              attributeName="d"
+              values="M 100,550 Q 300,500 500,550 T 900,550 T 1100,550; M 100,550 Q 300,600 500,550 T 900,550 T 1100,550; M 100,550 Q 300,500 500,550 T 900,550 T 1100,550"
+              dur="10s"
+              repeatCount="indefinite"
+            />
+            <animate attributeName="stroke-dashoffset" from="0" to="20" dur="2s" repeatCount="indefinite" />
+          </path>
+
+          {/* Glowing orbs */}
+          <circle cx="250" cy="200" r="110" fill="url(#glowPhilo)">
+            <animate attributeName="r" values="110;140;110" dur="8s" repeatCount="indefinite" />
+          </circle>
+          <circle cx="950" cy="600" r="100" fill="url(#glowWisdom)">
+            <animate attributeName="r" values="100;130;100" dur="7s" repeatCount="indefinite" />
+          </circle>
+          <circle cx="600" cy="400" r="95" fill="#FFC94B" opacity="0.12">
+            <animate attributeName="r" values="95;125;95" dur="9s" repeatCount="indefinite" />
+          </circle>
+
+          {/* Sparkles */}
+          {[...Array(18)].map((_, i) => {
+            const cx = (i * 95 + 70) % 1130;
+            const cy = (i * 73 + 100) % 700;
+            const dur = 3 + (i % 4) * 0.5;
+            return (
+              <g key={`sparkle-philo-${i}`} opacity="0.5">
+                <circle cx={cx} cy={cy} r="2.5" fill="#FFC94B">
+                  <animate attributeName="opacity" values="0;1;0" dur={`${dur}s`} repeatCount="indefinite" />
+                  <animate attributeName="r" values="2.5;5;2.5" dur={`${dur}s`} repeatCount="indefinite" />
+                </circle>
+                <line x1={cx} y1={cy - 7} x2={cx} y2={cy + 7} stroke="#FFC94B" strokeWidth="1.5">
+                  <animate attributeName="opacity" values="0;1;0" dur={`${dur}s`} repeatCount="indefinite" />
+                </line>
+                <line x1={cx - 7} y1={cy} x2={cx + 7} y2={cy} stroke="#FFC94B" strokeWidth="1.5">
+                  <animate attributeName="opacity" values="0;1;0" dur={`${dur}s`} repeatCount="indefinite" />
+                </line>
+              </g>
+            );
+          })}
+
+          {/* Circular dots */}
+          {[...Array(14)].map((_, i) => {
+            const angle = (i * 25.7 * Math.PI) / 180;
+            const cx = 600 + Math.cos(angle) * 270;
+            const cy = 400 + Math.sin(angle) * 270;
+            return (
+              <circle key={`dot-philo-${i}`} cx={cx} cy={cy} r="4" fill="#2CA4A4" opacity="0.35">
+                <animate attributeName="r" values="4;7;4" dur="7s" begin={`${i * 0.4}s`} repeatCount="indefinite" />
+                <animate attributeName="opacity" values="0.3;0.7;0.3" dur="7s" begin={`${i * 0.4}s`} repeatCount="indefinite" />
+              </circle>
+            );
+          })}
+        </svg>
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -343,19 +1200,361 @@ const WhatMakesUsUnique: React.FC = () => {
 
   return (
     <section className="py-20 bg-gradient-to-b from-white to-[#FAF7F2] relative overflow-hidden">
-      {/* Background decorative elements */}
-      <div className="absolute inset-0">
-        <div className="absolute top-10 left-1/4 w-32 h-32 bg-[#2CA4A4]/5 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-20 right-1/4 w-40 h-40 bg-[#FFC94B]/5 rounded-full blur-3xl"></div>
-        <div className="absolute top-1/2 left-10 w-24 h-24 bg-[#8B5FBF]/5 rounded-full blur-2xl animate-bounce"></div>
+      {/* Animated SVG Background - Unique Features Theme */}
+      <div className="absolute inset-0 w-full h-full pointer-events-none overflow-hidden">
+        <svg
+          className="w-full h-full"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 1200 900"
+          preserveAspectRatio="xMidYMid slice"
+        >
+          <defs>
+            {/* Gradient definitions */}
+            <linearGradient id="uniqueGradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style={{ stopColor: "#2CA4A4", stopOpacity: 0.4 }} />
+              <stop offset="100%" style={{ stopColor: "#5EC1E8", stopOpacity: 0.35 }} />
+            </linearGradient>
+            <linearGradient id="uniqueGradient2" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style={{ stopColor: "#FFC94B", stopOpacity: 0.4 }} />
+              <stop offset="100%" style={{ stopColor: "#A5C85A", stopOpacity: 0.35 }} />
+            </linearGradient>
+            <linearGradient id="uniqueGradient3" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style={{ stopColor: "#8B5FBF", stopOpacity: 0.4 }} />
+              <stop offset="100%" style={{ stopColor: "#5EC1E8", stopOpacity: 0.35 }} />
+            </linearGradient>
+            <radialGradient id="glowUnique" cx="50%" cy="50%">
+              <stop offset="0%" style={{ stopColor: "#2CA4A4", stopOpacity: 0.3 }} />
+              <stop offset="100%" style={{ stopColor: "#2CA4A4", stopOpacity: 0 }} />
+            </radialGradient>
+            <radialGradient id="glowCelebrate" cx="50%" cy="50%">
+              <stop offset="0%" style={{ stopColor: "#FFC94B", stopOpacity: 0.3 }} />
+              <stop offset="100%" style={{ stopColor: "#FFC94B", stopOpacity: 0 }} />
+            </radialGradient>
+          </defs>
 
-        {/* Floating decorative dots */}
-        <div className="absolute top-20 right-20 w-3 h-3 bg-[#5EC1E8] rounded-full animate-ping"></div>
-        <div className="absolute bottom-40 left-16 w-2 h-2 bg-[#A5C85A] rounded-full animate-bounce"></div>
-        <div
-          className="absolute top-60 right-1/3 w-4 h-4 bg-[#FFC94B] rotate-45"
-          style={{ animation: "spin 6s linear infinite" }}
-        ></div>
+          {/* Layered domain icons (11 Learning Domains) */}
+          {[...Array(11)].map((_, i) => {
+            const x = (i * 130 + 120) % 1080;
+            const y = 180 + Math.floor(i / 6) * 200 + (i % 2) * 100;
+            const dur = 6 + i * 0.5;
+            return (
+              <g key={`layer-${i}`} opacity="0.4">
+                <rect
+                  x={x - 20}
+                  y={y - 15}
+                  width="40"
+                  height="30"
+                  rx="4"
+                  fill="url(#uniqueGradient1)"
+                  stroke="#2CA4A4"
+                  strokeWidth="2"
+                >
+                  <animate attributeName="opacity" values="0.3;0.7;0.3" dur={`${dur}s`} repeatCount="indefinite" />
+                  <animateTransform
+                    attributeName="transform"
+                    type="translate"
+                    values={`0,0; 0,-10; 0,0`}
+                    dur={`${dur}s`}
+                    repeatCount="indefinite"
+                  />
+                </rect>
+                <rect
+                  x={x - 16}
+                  y={y - 10}
+                  width="32"
+                  height="20"
+                  rx="3"
+                  fill="none"
+                  stroke="#2CA4A4"
+                  strokeWidth="1.5"
+                  opacity="0.5"
+                >
+                  <animateTransform
+                    attributeName="transform"
+                    type="translate"
+                    values={`0,0; 0,-10; 0,0`}
+                    dur={`${dur}s`}
+                    repeatCount="indefinite"
+                  />
+                </rect>
+              </g>
+            );
+          })}
+
+          {/* Growth arrows with tiers (Three Growth Tiers) */}
+          {[...Array(6)].map((_, i) => {
+            const x = 200 + i * 180;
+            const y = 650;
+            const heights = [80, 120, 160]; // Three tiers
+            const height = heights[i % 3];
+            const dur = 7 + i;
+            return (
+              <g key={`tier-${i}`} opacity="0.4">
+                {/* Arrow shaft */}
+                <line
+                  x1={x}
+                  y1={y}
+                  x2={x}
+                  y2={y - height}
+                  stroke="#FFC94B"
+                  strokeWidth="4"
+                  strokeLinecap="round"
+                >
+                  <animate attributeName="opacity" values="0.3;0.7;0.3" dur={`${dur}s`} repeatCount="indefinite" />
+                </line>
+                {/* Arrow head */}
+                <path
+                  d={`M${x - 12},${y - height + 15} L${x},${y - height} L${x + 12},${y - height + 15}`}
+                  stroke="#FFC94B"
+                  strokeWidth="4"
+                  fill="none"
+                  strokeLinecap="round"
+                >
+                  <animate attributeName="opacity" values="0.3;0.7;0.3" dur={`${dur}s`} repeatCount="indefinite" />
+                </path>
+                {/* Tier label circles */}
+                <circle cx={x} cy={y - height / 2} r="6" fill="#A5C85A">
+                  <animate attributeName="r" values="6;9;6" dur={`${dur}s`} repeatCount="indefinite" />
+                </circle>
+              </g>
+            );
+          })}
+
+          {/* Dolphin shapes (Dolphin Mascot) */}
+          {[...Array(5)].map((_, i) => {
+            const x = 180 + i * 250;
+            const y = 420 + (i % 2) * 180;
+            const dur = 8 + i;
+            return (
+              <g key={`dolphin-${i}`} opacity="0.35">
+                {/* Dolphin body */}
+                <ellipse
+                  cx={x}
+                  cy={y}
+                  rx="35"
+                  ry="18"
+                  fill="url(#uniqueGradient3)"
+                  stroke="#5EC1E8"
+                  strokeWidth="2"
+                >
+                  <animate attributeName="opacity" values="0.3;0.6;0.3" dur={`${dur}s`} repeatCount="indefinite" />
+                  <animateTransform
+                    attributeName="transform"
+                    type="translate"
+                    values={`0,0; 30,0; 0,0`}
+                    dur={`${dur}s`}
+                    repeatCount="indefinite"
+                  />
+                </ellipse>
+                {/* Dolphin fin */}
+                <path
+                  d={`M${x + 10},${y - 10} L${x + 15},${y - 20} L${x + 20},${y - 8}`}
+                  stroke="#5EC1E8"
+                  strokeWidth="2.5"
+                  fill="none"
+                  strokeLinecap="round"
+                >
+                  <animateTransform
+                    attributeName="transform"
+                    type="translate"
+                    values={`0,0; 30,0; 0,0`}
+                    dur={`${dur}s`}
+                    repeatCount="indefinite"
+                  />
+                </path>
+                {/* Bubbles */}
+                <circle cx={x - 40} cy={y - 10} r="4" fill="#5EC1E8" opacity="0.5">
+                  <animate attributeName="cy" values={`${y - 10};${y - 40};${y - 10}`} dur={`${dur}s`} repeatCount="indefinite" />
+                  <animate attributeName="opacity" values="0.5;0;0.5" dur={`${dur}s`} repeatCount="indefinite" />
+                </circle>
+              </g>
+            );
+          })}
+
+          {/* Crosses with halos (Christian Values) */}
+          {[...Array(8)].map((_, i) => {
+            const x = (i * 160 + 140) % 1060;
+            const y = (i * 115 + 200) % 700;
+            const dur = 6 + i * 0.5;
+            return (
+              <g key={`cross-unique-${i}`} opacity="0.4">
+                <line x1={x} y1={y - 16} x2={x} y2={y + 16} stroke="#8B5FBF" strokeWidth="3" strokeLinecap="round">
+                  <animate attributeName="opacity" values="0.3;0.7;0.3" dur={`${dur}s`} repeatCount="indefinite" />
+                </line>
+                <line x1={x - 11} y1={y - 5} x2={x + 11} y2={y - 5} stroke="#8B5FBF" strokeWidth="3" strokeLinecap="round">
+                  <animate attributeName="opacity" values="0.3;0.7;0.3" dur={`${dur}s`} repeatCount="indefinite" />
+                </line>
+                {/* Glow circle */}
+                <circle cx={x} cy={y} r="22" fill="none" stroke="#8B5FBF" strokeWidth="2" opacity="0.3">
+                  <animate attributeName="r" values="22;28;22" dur={`${dur}s`} repeatCount="indefinite" />
+                  <animate attributeName="opacity" values="0.4;0;0.4" dur={`${dur}s`} repeatCount="indefinite" />
+                </circle>
+              </g>
+            );
+          })}
+
+          {/* Party confetti (Transition Celebrations) */}
+          {[...Array(20)].map((_, i) => {
+            const x = (i * 85 + 80) % 1120;
+            const y = 150 + (i * 60) % 600;
+            const dur = 3 + (i % 5) * 0.5;
+            const shapes = ['rect', 'circle', 'triangle'];
+            const shape = shapes[i % 3];
+            return (
+              <g key={`confetti-${i}`} opacity="0.5">
+                {shape === 'circle' && (
+                  <circle cx={x} cy={y} r="5" fill="#FFC94B">
+                    <animate attributeName="cy" values={`${y};${y + 200};${y}`} dur={`${dur}s`} repeatCount="indefinite" />
+                    <animate attributeName="opacity" values="0.7;0.3;0.7" dur={`${dur}s`} repeatCount="indefinite" />
+                    <animateTransform
+                      attributeName="transform"
+                      type="rotate"
+                      from={`0 ${x} ${y}`}
+                      to={`360 ${x} ${y}`}
+                      dur={`${dur}s`}
+                      repeatCount="indefinite"
+                    />
+                  </circle>
+                )}
+                {shape === 'rect' && (
+                  <rect x={x - 4} y={y - 4} width="8" height="8" fill="#EC4899" rx="1">
+                    <animate attributeName="y" values={`${y - 4};${y + 196};${y - 4}`} dur={`${dur}s`} repeatCount="indefinite" />
+                    <animate attributeName="opacity" values="0.7;0.3;0.7" dur={`${dur}s`} repeatCount="indefinite" />
+                    <animateTransform
+                      attributeName="transform"
+                      type="rotate"
+                      from={`0 ${x} ${y}`}
+                      to={`360 ${x} ${y}`}
+                      dur={`${dur}s`}
+                      repeatCount="indefinite"
+                    />
+                  </rect>
+                )}
+                {shape === 'triangle' && (
+                  <polygon points={`${x},${y - 5} ${x + 5},${y + 5} ${x - 5},${y + 5}`} fill="#A5C85A">
+                    <animate attributeName="points" values={`${x},${y - 5} ${x + 5},${y + 5} ${x - 5},${y + 5};${x},${y + 195} ${x + 5},${y + 205} ${x - 5},${y + 205};${x},${y - 5} ${x + 5},${y + 5} ${x - 5},${y + 5}`} dur={`${dur}s`} repeatCount="indefinite" />
+                    <animate attributeName="opacity" values="0.7;0.3;0.7" dur={`${dur}s`} repeatCount="indefinite" />
+                    <animateTransform
+                      attributeName="transform"
+                      type="rotate"
+                      from={`0 ${x} ${y}`}
+                      to={`360 ${x} ${y}`}
+                      dur={`${dur}s`}
+                      repeatCount="indefinite"
+                    />
+                  </polygon>
+                )}
+              </g>
+            );
+          })}
+
+          {/* Award stars (Excellence/Unique) */}
+          {[...Array(15)].map((_, i) => {
+            const x = (i * 110 + 90) % 1110;
+            const y = (i * 87 + 160) % 740;
+            const size = 8 + (i % 3) * 4;
+            const dur = 5 + (i % 4);
+            return (
+              <g key={`star-unique-${i}`} opacity="0.4">
+                <polygon
+                  points={`${x},${y - size} ${x + size * 0.3},${y - size * 0.3} ${x + size},${y} ${x + size * 0.3},${y + size * 0.3} ${x},${y + size} ${x - size * 0.3},${y + size * 0.3} ${x - size},${y} ${x - size * 0.3},${y - size * 0.3}`}
+                  fill="#FFC94B"
+                  stroke="#FFC94B"
+                  strokeWidth="1"
+                >
+                  <animateTransform
+                    attributeName="transform"
+                    type="rotate"
+                    from={`0 ${x} ${y}`}
+                    to={`360 ${x} ${y}`}
+                    dur={`${dur}s`}
+                    repeatCount="indefinite"
+                  />
+                  <animate attributeName="opacity" values="0.3;0.7;0.3" dur={`${dur}s`} repeatCount="indefinite" />
+                </polygon>
+              </g>
+            );
+          })}
+
+          {/* Flowing wave lines */}
+          <path
+            d="M 0,300 Q 200,250 400,300 T 800,300 T 1200,300"
+            stroke="#2CA4A4"
+            strokeWidth="3"
+            fill="none"
+            opacity="0.35"
+            strokeDasharray="15,10"
+          >
+            <animate
+              attributeName="d"
+              values="M 0,300 Q 200,250 400,300 T 800,300 T 1200,300; M 0,300 Q 200,350 400,300 T 800,300 T 1200,300; M 0,300 Q 200,250 400,300 T 800,300 T 1200,300"
+              dur="10s"
+              repeatCount="indefinite"
+            />
+            <animate attributeName="stroke-dashoffset" from="0" to="25" dur="2s" repeatCount="indefinite" />
+          </path>
+          <path
+            d="M 0,600 Q 250,550 500,600 T 1000,600 T 1200,600"
+            stroke="#5EC1E8"
+            strokeWidth="3"
+            fill="none"
+            opacity="0.35"
+            strokeDasharray="15,10"
+          >
+            <animate
+              attributeName="d"
+              values="M 0,600 Q 250,550 500,600 T 1000,600 T 1200,600; M 0,600 Q 250,650 500,600 T 1000,600 T 1200,600; M 0,600 Q 250,550 500,600 T 1000,600 T 1200,600"
+              dur="11s"
+              repeatCount="indefinite"
+            />
+            <animate attributeName="stroke-dashoffset" from="0" to="25" dur="2s" repeatCount="indefinite" />
+          </path>
+
+          {/* Glowing orbs */}
+          <circle cx="250" cy="250" r="130" fill="url(#glowUnique)">
+            <animate attributeName="r" values="130;160;130" dur="8s" repeatCount="indefinite" />
+          </circle>
+          <circle cx="950" cy="700" r="120" fill="url(#glowCelebrate)">
+            <animate attributeName="r" values="120;150;120" dur="7s" repeatCount="indefinite" />
+          </circle>
+          <circle cx="600" cy="450" r="110" fill="#8B5FBF" opacity="0.12">
+            <animate attributeName="r" values="110;140;110" dur="9s" repeatCount="indefinite" />
+          </circle>
+
+          {/* Sparkles */}
+          {[...Array(25)].map((_, i) => {
+            const cx = (i * 78 + 65) % 1135;
+            const cy = (i * 61 + 95) % 805;
+            const dur = 3 + (i % 5) * 0.5;
+            return (
+              <g key={`sparkle-unique-${i}`} opacity="0.5">
+                <circle cx={cx} cy={cy} r="3" fill="#5EC1E8">
+                  <animate attributeName="opacity" values="0;1;0" dur={`${dur}s`} repeatCount="indefinite" />
+                  <animate attributeName="r" values="3;6;3" dur={`${dur}s`} repeatCount="indefinite" />
+                </circle>
+                <line x1={cx} y1={cy - 9} x2={cx} y2={cy + 9} stroke="#5EC1E8" strokeWidth="2">
+                  <animate attributeName="opacity" values="0;1;0" dur={`${dur}s`} repeatCount="indefinite" />
+                </line>
+                <line x1={cx - 9} y1={cy} x2={cx + 9} y2={cy} stroke="#5EC1E8" strokeWidth="2">
+                  <animate attributeName="opacity" values="0;1;0" dur={`${dur}s`} repeatCount="indefinite" />
+                </line>
+              </g>
+            );
+          })}
+
+          {/* Circular dots pattern */}
+          {[...Array(18)].map((_, i) => {
+            const angle = (i * 20 * Math.PI) / 180;
+            const cx = 600 + Math.cos(angle) * 300;
+            const cy = 450 + Math.sin(angle) * 300;
+            return (
+              <circle key={`dot-unique-${i}`} cx={cx} cy={cy} r="5" fill="#A5C85A" opacity="0.4">
+                <animate attributeName="r" values="5;8;5" dur="7s" begin={`${i * 0.3}s`} repeatCount="indefinite" />
+                <animate attributeName="opacity" values="0.3;0.7;0.3" dur="7s" begin={`${i * 0.3}s`} repeatCount="indefinite" />
+              </circle>
+            );
+          })}
+        </svg>
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

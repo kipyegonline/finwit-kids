@@ -6,7 +6,7 @@ export default function PricingPage() {
   return (
     <div>
       <ScrollToTop />
-      <Header />
+
       <Pricing />
     </div>
   );

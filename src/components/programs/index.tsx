@@ -45,11 +45,345 @@ const AgeSelectorAndSingleDomains: React.FC = () => {
 
   return (
     <section className="py-16 bg-[#FAF7F2] relative overflow-hidden">
-      {/* Background decorative elements */}
-      <div className="absolute inset-0">
-        <div className="absolute top-10 right-10 w-32 h-32 bg-[#2CA4A4]/10 rounded-full blur-2xl animate-pulse"></div>
-        <div className="absolute bottom-20 left-10 w-24 h-24 bg-[#FFC94B]/10 rounded-full blur-xl animate-bounce"></div>
-        <div className="absolute top-1/2 right-1/4 w-3 h-3 bg-[#5EC1E8] rounded-full animate-ping"></div>
+      {/* Animated SVG Background - Programs Theme */}
+      <div className="absolute inset-0 w-full h-full pointer-events-none overflow-hidden">
+        <svg
+          className="w-full h-full"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 1200 800"
+          preserveAspectRatio="xMidYMid slice"
+        >
+          <defs>
+            <linearGradient
+              id="progGradient1"
+              x1="0%"
+              y1="0%"
+              x2="100%"
+              y2="100%"
+            >
+              <stop
+                offset="0%"
+                style={{ stopColor: "#2CA4A4", stopOpacity: 0.4 }}
+              />
+              <stop
+                offset="100%"
+                style={{ stopColor: "#5EC1E8", stopOpacity: 0.35 }}
+              />
+            </linearGradient>
+            <linearGradient
+              id="progGradient2"
+              x1="0%"
+              y1="0%"
+              x2="100%"
+              y2="100%"
+            >
+              <stop
+                offset="0%"
+                style={{ stopColor: "#FFC94B", stopOpacity: 0.4 }}
+              />
+              <stop
+                offset="100%"
+                style={{ stopColor: "#A5C85A", stopOpacity: 0.35 }}
+              />
+            </linearGradient>
+            <radialGradient id="glowProg" cx="50%" cy="50%">
+              <stop
+                offset="0%"
+                style={{ stopColor: "#2CA4A4", stopOpacity: 0.25 }}
+              />
+              <stop
+                offset="100%"
+                style={{ stopColor: "#2CA4A4", stopOpacity: 0 }}
+              />
+            </radialGradient>
+          </defs>
+
+          {/* Age milestone markers */}
+          {[4, 7, 11, 14, 18].map((age, i) => {
+            const x = 150 + i * 220;
+            const y = 350;
+            const dur = 6 + i * 0.5;
+            return (
+              <g key={`age-${age}`} opacity="0.4">
+                <circle
+                  cx={x}
+                  cy={y}
+                  r="25"
+                  fill="url(#progGradient1)"
+                  stroke="#2CA4A4"
+                  strokeWidth="2.5"
+                >
+                  <animate
+                    attributeName="r"
+                    values="25;30;25"
+                    dur={`${dur}s`}
+                    repeatCount="indefinite"
+                  />
+                  <animate
+                    attributeName="opacity"
+                    values="0.4;0.7;0.4"
+                    dur={`${dur}s`}
+                    repeatCount="indefinite"
+                  />
+                </circle>
+                <text
+                  x={x}
+                  y={y + 5}
+                  textAnchor="middle"
+                  fontSize="14"
+                  fill="#2CA4A4"
+                  fontWeight="bold"
+                >
+                  {age}
+                </text>
+                {/* Connection line to next */}
+                {i < 4 && (
+                  <line
+                    x1={x + 25}
+                    y1={y}
+                    x2={x + 195}
+                    y2={y}
+                    stroke="#2CA4A4"
+                    strokeWidth="2"
+                    strokeDasharray="5,5"
+                    opacity="0.3"
+                  >
+                    <animate
+                      attributeName="stroke-dashoffset"
+                      from="0"
+                      to="10"
+                      dur="2s"
+                      repeatCount="indefinite"
+                    />
+                  </line>
+                )}
+              </g>
+            );
+          })}
+
+          {/* Calculator icons (Math) */}
+          {[...Array(5)].map((_, i) => {
+            const x = (i * 210 + 180) % 1040;
+            const y = (i * 140 + 150) % 650;
+            const dur = 7 + i;
+            return (
+              <g key={`calc-${i}`} opacity="0.35">
+                <rect
+                  x={x - 18}
+                  y={y - 24}
+                  width="36"
+                  height="48"
+                  rx="4"
+                  fill="url(#progGradient2)"
+                  stroke="#FFC94B"
+                  strokeWidth="2"
+                >
+                  <animate
+                    attributeName="opacity"
+                    values="0.3;0.6;0.3"
+                    dur={`${dur}s`}
+                    repeatCount="indefinite"
+                  />
+                </rect>
+                {[...Array(3)].map((_, row) =>
+                  [...Array(3)].map((_, col) => (
+                    <rect
+                      key={`btn-${row}-${col}`}
+                      x={x - 12 + col * 8}
+                      y={y - 10 + row * 8}
+                      width="6"
+                      height="6"
+                      rx="1"
+                      fill="#FFC94B"
+                    />
+                  ))
+                )}
+                <animateTransform
+                  attributeName="transform"
+                  type="translate"
+                  values={`0,0; 0,-15; 0,0`}
+                  dur={`${dur}s`}
+                  repeatCount="indefinite"
+                />
+              </g>
+            );
+          })}
+
+          {/* Code brackets */}
+          {[...Array(6)].map((_, i) => {
+            const x = (i * 190 + 160) % 1040;
+            const y = (i * 120 + 200) % 600;
+            const dur = 6 + i * 0.5;
+            return (
+              <g key={`code-${i}`} opacity="0.4">
+                <path
+                  d={`M${x - 10},${y - 20} L${x - 20},${y} L${x - 10},${
+                    y + 20
+                  }`}
+                  stroke="#5EC1E8"
+                  strokeWidth="3"
+                  fill="none"
+                  strokeLinecap="round"
+                >
+                  <animate
+                    attributeName="opacity"
+                    values="0.3;0.7;0.3"
+                    dur={`${dur}s`}
+                    repeatCount="indefinite"
+                  />
+                </path>
+                <path
+                  d={`M${x + 10},${y - 20} L${x + 20},${y} L${x + 10},${
+                    y + 20
+                  }`}
+                  stroke="#5EC1E8"
+                  strokeWidth="3"
+                  fill="none"
+                  strokeLinecap="round"
+                >
+                  <animate
+                    attributeName="opacity"
+                    values="0.3;0.7;0.3"
+                    dur={`${dur}s`}
+                    repeatCount="indefinite"
+                  />
+                </path>
+                <circle cx={x} cy={y} r="3" fill="#5EC1E8">
+                  <animate
+                    attributeName="r"
+                    values="3;6;3"
+                    dur={`${dur}s`}
+                    repeatCount="indefinite"
+                  />
+                </circle>
+              </g>
+            );
+          })}
+
+          {/* Books (Learning) */}
+          {[...Array(8)].map((_, i) => {
+            const x = (i * 170 + 140) % 1060;
+            const y = (i * 95 + 180) % 620;
+            const dur = 7 + i * 0.5;
+            return (
+              <g key={`book-${i}`} opacity="0.35">
+                <rect
+                  x={x - 14}
+                  y={y - 10}
+                  width="28"
+                  height="20"
+                  rx="2"
+                  fill="url(#progGradient1)"
+                  stroke="#2CA4A4"
+                  strokeWidth="2"
+                >
+                  <animate
+                    attributeName="opacity"
+                    values="0.3;0.6;0.3"
+                    dur={`${dur}s`}
+                    repeatCount="indefinite"
+                  />
+                </rect>
+                <line
+                  x1={x - 8}
+                  y1={y - 4}
+                  x2={x + 8}
+                  y2={y - 4}
+                  stroke="#2CA4A4"
+                  strokeWidth="1.5"
+                />
+                <line
+                  x1={x - 8}
+                  y1={y + 2}
+                  x2={x + 8}
+                  y2={y + 2}
+                  stroke="#2CA4A4"
+                  strokeWidth="1.5"
+                />
+                <animateTransform
+                  attributeName="transform"
+                  type="translate"
+                  values={`0,0; 0,15; 0,0`}
+                  dur={`${dur}s`}
+                  repeatCount="indefinite"
+                />
+              </g>
+            );
+          })}
+
+          {/* Sparkles */}
+          {[...Array(20)].map((_, i) => {
+            const cx = (i * 88 + 70) % 1130;
+            const cy = (i * 67 + 100) % 700;
+            const dur = 3 + (i % 5) * 0.5;
+            return (
+              <g key={`sparkle-prog-${i}`} opacity="0.5">
+                <circle cx={cx} cy={cy} r="2.5" fill="#FFC94B">
+                  <animate
+                    attributeName="opacity"
+                    values="0;1;0"
+                    dur={`${dur}s`}
+                    repeatCount="indefinite"
+                  />
+                  <animate
+                    attributeName="r"
+                    values="2.5;5;2.5"
+                    dur={`${dur}s`}
+                    repeatCount="indefinite"
+                  />
+                </circle>
+                <line
+                  x1={cx}
+                  y1={cy - 8}
+                  x2={cx}
+                  y2={cy + 8}
+                  stroke="#FFC94B"
+                  strokeWidth="1.5"
+                >
+                  <animate
+                    attributeName="opacity"
+                    values="0;1;0"
+                    dur={`${dur}s`}
+                    repeatCount="indefinite"
+                  />
+                </line>
+                <line
+                  x1={cx - 8}
+                  y1={cy}
+                  x2={cx + 8}
+                  y2={cy}
+                  stroke="#FFC94B"
+                  strokeWidth="1.5"
+                >
+                  <animate
+                    attributeName="opacity"
+                    values="0;1;0"
+                    dur={`${dur}s`}
+                    repeatCount="indefinite"
+                  />
+                </line>
+              </g>
+            );
+          })}
+
+          {/* Glowing orbs */}
+          <circle cx="250" cy="200" r="120" fill="url(#glowProg)">
+            <animate
+              attributeName="r"
+              values="120;150;120"
+              dur="8s"
+              repeatCount="indefinite"
+            />
+          </circle>
+          <circle cx="950" cy="600" r="110" fill="#FFC94B" opacity="0.15">
+            <animate
+              attributeName="r"
+              values="110;140;110"
+              dur="7s"
+              repeatCount="indefinite"
+            />
+          </circle>
+        </svg>
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -167,11 +501,316 @@ const FourInOneBundles: React.FC = () => {
 
   return (
     <section className="py-16 bg-white relative overflow-hidden">
-      {/* Background decorative elements */}
-      <div className="absolute inset-0">
-        <div className="absolute top-20 left-10 w-40 h-40 bg-[#A5C85A]/5 rounded-full blur-2xl"></div>
-        <div className="absolute bottom-10 right-10 w-32 h-32 bg-[#5EC1E8]/5 rounded-full blur-2xl"></div>
-        <div className="absolute top-1/2 left-1/4 w-2 h-2 bg-[#FFC94B] rounded-full animate-bounce"></div>
+      {/* Animated SVG Background - Bundles Theme */}
+      <div className="absolute inset-0 w-full h-full pointer-events-none overflow-hidden">
+        <svg
+          className="w-full h-full"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 1200 700"
+          preserveAspectRatio="xMidYMid slice"
+        >
+          <defs>
+            <linearGradient
+              id="bundleGradient1"
+              x1="0%"
+              y1="0%"
+              x2="100%"
+              y2="100%"
+            >
+              <stop
+                offset="0%"
+                style={{ stopColor: "#A5C85A", stopOpacity: 0.4 }}
+              />
+              <stop
+                offset="100%"
+                style={{ stopColor: "#2CA4A4", stopOpacity: 0.35 }}
+              />
+            </linearGradient>
+            <linearGradient
+              id="bundleGradient2"
+              x1="0%"
+              y1="0%"
+              x2="100%"
+              y2="100%"
+            >
+              <stop
+                offset="0%"
+                style={{ stopColor: "#FFC94B", stopOpacity: 0.4 }}
+              />
+              <stop
+                offset="100%"
+                style={{ stopColor: "#5EC1E8", stopOpacity: 0.35 }}
+              />
+            </linearGradient>
+            <radialGradient id="glowBundle" cx="50%" cy="50%">
+              <stop
+                offset="0%"
+                style={{ stopColor: "#A5C85A", stopOpacity: 0.25 }}
+              />
+              <stop
+                offset="100%"
+                style={{ stopColor: "#A5C85A", stopOpacity: 0 }}
+              />
+            </radialGradient>
+          </defs>
+
+          {/* 4-square bundle icons */}
+          {[...Array(6)].map((_, i) => {
+            const x = 200 + i * 180;
+            const y = 250 + (i % 2) * 200;
+            const dur = 7 + i;
+            return (
+              <g key={`bundle-${i}`} opacity="0.35">
+                {/* 4 squares in 2x2 grid */}
+                <rect
+                  x={x - 20}
+                  y={y - 20}
+                  width="18"
+                  height="18"
+                  rx="3"
+                  fill="url(#bundleGradient1)"
+                  stroke="#A5C85A"
+                  strokeWidth="2"
+                >
+                  <animate
+                    attributeName="opacity"
+                    values="0.3;0.7;0.3"
+                    dur={`${dur}s`}
+                    repeatCount="indefinite"
+                  />
+                </rect>
+                <rect
+                  x={x + 2}
+                  y={y - 20}
+                  width="18"
+                  height="18"
+                  rx="3"
+                  fill="url(#bundleGradient2)"
+                  stroke="#FFC94B"
+                  strokeWidth="2"
+                >
+                  <animate
+                    attributeName="opacity"
+                    values="0.3;0.7;0.3"
+                    dur={`${dur}s`}
+                    begin="0.2s"
+                    repeatCount="indefinite"
+                  />
+                </rect>
+                <rect
+                  x={x - 20}
+                  y={y + 2}
+                  width="18"
+                  height="18"
+                  rx="3"
+                  fill="url(#bundleGradient2)"
+                  stroke="#5EC1E8"
+                  strokeWidth="2"
+                >
+                  <animate
+                    attributeName="opacity"
+                    values="0.3;0.7;0.3"
+                    dur={`${dur}s`}
+                    begin="0.4s"
+                    repeatCount="indefinite"
+                  />
+                </rect>
+                <rect
+                  x={x + 2}
+                  y={y + 2}
+                  width="18"
+                  height="18"
+                  rx="3"
+                  fill="url(#bundleGradient1)"
+                  stroke="#2CA4A4"
+                  strokeWidth="2"
+                >
+                  <animate
+                    attributeName="opacity"
+                    values="0.3;0.7;0.3"
+                    dur={`${dur}s`}
+                    begin="0.6s"
+                    repeatCount="indefinite"
+                  />
+                </rect>
+                {/* Grouping circle */}
+                <circle
+                  cx={x - 1}
+                  cy={y - 1}
+                  r="32"
+                  fill="none"
+                  stroke="#A5C85A"
+                  strokeWidth="2"
+                  strokeDasharray="5,5"
+                  opacity="0.3"
+                >
+                  <animate
+                    attributeName="r"
+                    values="32;36;32"
+                    dur={`${dur}s`}
+                    repeatCount="indefinite"
+                  />
+                </circle>
+                <animateTransform
+                  attributeName="transform"
+                  type="translate"
+                  values={`0,0; 0,-12; 0,0`}
+                  dur={`${dur}s`}
+                  repeatCount="indefinite"
+                />
+              </g>
+            );
+          })}
+
+          {/* Connected group icons */}
+          {[...Array(4)].map((_, i) => {
+            const x = 280 + i * 260;
+            const y = 420;
+            const dur = 8 + i;
+            return (
+              <g key={`group-${i}`} opacity="0.35">
+                {/* 3 people in group */}
+                {[-15, 0, 15].map((offset, idx) => (
+                  <g key={`person-${idx}`}>
+                    <circle cx={x + offset} cy={y} r="8" fill="#5EC1E8">
+                      <animate
+                        attributeName="opacity"
+                        values="0.4;0.7;0.4"
+                        dur={`${dur}s`}
+                        begin={`${idx * 0.2}s`}
+                        repeatCount="indefinite"
+                      />
+                    </circle>
+                    <path
+                      d={`M${x + offset},${y + 8} L${x + offset},${y + 20} M${
+                        x + offset - 7
+                      },${y + 15} L${x + offset + 7},${y + 15}`}
+                      stroke="#5EC1E8"
+                      strokeWidth="2.5"
+                      strokeLinecap="round"
+                    >
+                      <animate
+                        attributeName="opacity"
+                        values="0.4;0.7;0.4"
+                        dur={`${dur}s`}
+                        begin={`${idx * 0.2}s`}
+                        repeatCount="indefinite"
+                      />
+                    </path>
+                  </g>
+                ))}
+              </g>
+            );
+          })}
+
+          {/* Package boxes */}
+          {[...Array(8)].map((_, i) => {
+            const x = (i * 160 + 140) % 1060;
+            const y = (i * 100 + 160) % 540;
+            const dur = 6 + i * 0.5;
+            return (
+              <g key={`package-${i}`} opacity="0.35">
+                <rect
+                  x={x - 16}
+                  y={y - 16}
+                  width="32"
+                  height="32"
+                  rx="4"
+                  fill="url(#bundleGradient1)"
+                  stroke="#A5C85A"
+                  strokeWidth="2"
+                >
+                  <animate
+                    attributeName="opacity"
+                    values="0.3;0.6;0.3"
+                    dur={`${dur}s`}
+                    repeatCount="indefinite"
+                  />
+                </rect>
+                {/* Cross tape */}
+                <line
+                  x1={x - 16}
+                  y1={y}
+                  x2={x + 16}
+                  y2={y}
+                  stroke="#FFC94B"
+                  strokeWidth="3"
+                />
+                <line
+                  x1={x}
+                  y1={y - 16}
+                  x2={x}
+                  y2={y + 16}
+                  stroke="#FFC94B"
+                  strokeWidth="3"
+                />
+                <animateTransform
+                  attributeName="transform"
+                  type="rotate"
+                  from={`0 ${x} ${y}`}
+                  to={`360 ${x} ${y}`}
+                  dur={`${dur * 2}s`}
+                  repeatCount="indefinite"
+                />
+              </g>
+            );
+          })}
+
+          {/* Stars */}
+          {[...Array(12)].map((_, i) => {
+            const x = (i * 120 + 100) % 1100;
+            const y = (i * 80 + 120) % 580;
+            const size = 8 + (i % 3) * 3;
+            const dur = 5 + (i % 4);
+            return (
+              <g key={`star-bundle-${i}`} opacity="0.4">
+                <polygon
+                  points={`${x},${y - size} ${x + size * 0.3},${
+                    y - size * 0.3
+                  } ${x + size},${y} ${x + size * 0.3},${y + size * 0.3} ${x},${
+                    y + size
+                  } ${x - size * 0.3},${y + size * 0.3} ${x - size},${y} ${
+                    x - size * 0.3
+                  },${y - size * 0.3}`}
+                  fill="#FFC94B"
+                >
+                  <animateTransform
+                    attributeName="transform"
+                    type="rotate"
+                    from={`0 ${x} ${y}`}
+                    to={`360 ${x} ${y}`}
+                    dur={`${dur}s`}
+                    repeatCount="indefinite"
+                  />
+                  <animate
+                    attributeName="opacity"
+                    values="0.3;0.7;0.3"
+                    dur={`${dur}s`}
+                    repeatCount="indefinite"
+                  />
+                </polygon>
+              </g>
+            );
+          })}
+
+          {/* Glowing orbs */}
+          <circle cx="300" cy="200" r="110" fill="url(#glowBundle)">
+            <animate
+              attributeName="r"
+              values="110;140;110"
+              dur="8s"
+              repeatCount="indefinite"
+            />
+          </circle>
+          <circle cx="900" cy="500" r="100" fill="#5EC1E8" opacity="0.12">
+            <animate
+              attributeName="r"
+              values="100;130;100"
+              dur="7s"
+              repeatCount="indefinite"
+            />
+          </circle>
+        </svg>
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -236,11 +875,324 @@ const FourInOneBundles: React.FC = () => {
 const FullAccess: React.FC = () => {
   return (
     <section className="py-16 bg-[#FAF7F2] relative overflow-hidden">
-      {/* Background decorative elements */}
-      <div className="absolute inset-0">
-        <div className="absolute top-10 left-10 w-36 h-36 bg-[#FFC94B]/10 rounded-full blur-2xl animate-pulse"></div>
-        <div className="absolute bottom-20 right-20 w-28 h-28 bg-[#2CA4A4]/10 rounded-full blur-xl animate-bounce"></div>
-        <div className="absolute top-1/3 right-1/3 w-3 h-3 bg-[#5EC1E8] rounded-full animate-ping"></div>
+      {/* Animated SVG Background - Full Access Theme */}
+      <div className="absolute inset-0 w-full h-full pointer-events-none overflow-hidden">
+        <svg
+          className="w-full h-full"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 1200 700"
+          preserveAspectRatio="xMidYMid slice"
+        >
+          <defs>
+            <linearGradient
+              id="accessGradient"
+              x1="0%"
+              y1="0%"
+              x2="100%"
+              y2="100%"
+            >
+              <stop
+                offset="0%"
+                style={{ stopColor: "#FFC94B", stopOpacity: 0.4 }}
+              />
+              <stop
+                offset="100%"
+                style={{ stopColor: "#2CA4A4", stopOpacity: 0.35 }}
+              />
+            </linearGradient>
+            <radialGradient id="glowAccess" cx="50%" cy="50%">
+              <stop
+                offset="0%"
+                style={{ stopColor: "#FFC94B", stopOpacity: 0.3 }}
+              />
+              <stop
+                offset="100%"
+                style={{ stopColor: "#FFC94B", stopOpacity: 0 }}
+              />
+            </radialGradient>
+          </defs>
+
+          {/* Expanding rings (unlimited access) */}
+          {[...Array(5)].map((_, i) => {
+            const dur = 6 + i;
+            return (
+              <g key={`ring-${i}`} opacity="0.3">
+                <circle
+                  cx="600"
+                  cy="350"
+                  r="50"
+                  fill="none"
+                  stroke="#2CA4A4"
+                  strokeWidth="2.5"
+                >
+                  <animate
+                    attributeName="r"
+                    values="50;200;50"
+                    dur={`${dur}s`}
+                    begin={`${i * 1.2}s`}
+                    repeatCount="indefinite"
+                  />
+                  <animate
+                    attributeName="opacity"
+                    values="0.6;0;0.6"
+                    dur={`${dur}s`}
+                    begin={`${i * 1.2}s`}
+                    repeatCount="indefinite"
+                  />
+                </circle>
+              </g>
+            );
+          })}
+
+          {/* Key icons (unlock all) */}
+          {[...Array(6)].map((_, i) => {
+            const x = (i * 200 + 150) % 1050;
+            const y = 180 + (i % 2) * 340;
+            const dur = 7 + i;
+            return (
+              <g key={`key-${i}`} opacity="0.35">
+                <circle
+                  cx={x}
+                  cy={y}
+                  r="10"
+                  fill="url(#accessGradient)"
+                  stroke="#FFC94B"
+                  strokeWidth="2"
+                >
+                  <animate
+                    attributeName="opacity"
+                    values="0.3;0.7;0.3"
+                    dur={`${dur}s`}
+                    repeatCount="indefinite"
+                  />
+                </circle>
+                <rect
+                  x={x + 10}
+                  y={y - 4}
+                  width="20"
+                  height="8"
+                  rx="2"
+                  fill="url(#accessGradient)"
+                  stroke="#FFC94B"
+                  strokeWidth="2"
+                >
+                  <animate
+                    attributeName="opacity"
+                    values="0.3;0.7;0.3"
+                    dur={`${dur}s`}
+                    repeatCount="indefinite"
+                  />
+                </rect>
+                <line
+                  x1={x + 24}
+                  y1={y - 6}
+                  x2={x + 24}
+                  y2={y - 10}
+                  stroke="#FFC94B"
+                  strokeWidth="2"
+                />
+                <line
+                  x1={x + 28}
+                  y1={y - 6}
+                  x2={x + 28}
+                  y2={y - 12}
+                  stroke="#FFC94B"
+                  strokeWidth="2"
+                />
+                <animateTransform
+                  attributeName="transform"
+                  type="rotate"
+                  from={`0 ${x} ${y}`}
+                  to={`360 ${x} ${y}`}
+                  dur={`${dur * 2}s`}
+                  repeatCount="indefinite"
+                />
+              </g>
+            );
+          })}
+
+          {/* Open book icons */}
+          {[...Array(8)].map((_, i) => {
+            const x = (i * 170 + 160) % 1040;
+            const y = (i * 110 + 200) % 500;
+            const dur = 6 + i * 0.5;
+            return (
+              <g key={`openbook-${i}`} opacity="0.35">
+                <path
+                  d={`M${x - 20},${y} Q${x - 20},${y - 15} ${x},${y - 15} Q${
+                    x + 20
+                  },${y - 15} ${x + 20},${y} L${x + 20},${y + 15} Q${x + 20},${
+                    y + 20
+                  } ${x},${y + 22} Q${x - 20},${y + 20} ${x - 20},${y + 15} Z`}
+                  fill="url(#accessGradient)"
+                  stroke="#2CA4A4"
+                  strokeWidth="2"
+                >
+                  <animate
+                    attributeName="opacity"
+                    values="0.3;0.6;0.3"
+                    dur={`${dur}s`}
+                    repeatCount="indefinite"
+                  />
+                </path>
+                <line
+                  x1={x}
+                  y1={y - 15}
+                  x2={x}
+                  y2={y + 22}
+                  stroke="#2CA4A4"
+                  strokeWidth="2"
+                />
+                <animateTransform
+                  attributeName="transform"
+                  type="translate"
+                  values={`0,0; 0,-10; 0,0`}
+                  dur={`${dur}s`}
+                  repeatCount="indefinite"
+                />
+              </g>
+            );
+          })}
+
+          {/* Infinity symbols */}
+          {[...Array(4)].map((_, i) => {
+            const x = 250 + i * 300;
+            const y = 350;
+            const dur = 8 + i;
+            return (
+              <g key={`infinity-${i}`} opacity="0.35">
+                <path
+                  d={`M${x - 25},${y} Q${x - 15},${y - 15} ${x},${y} Q${
+                    x + 15
+                  },${y + 15} ${x + 25},${y} Q${x + 15},${y - 15} ${x},${y} Q${
+                    x - 15
+                  },${y + 15} ${x - 25},${y}`}
+                  fill="none"
+                  stroke="#FFC94B"
+                  strokeWidth="3"
+                >
+                  <animate
+                    attributeName="opacity"
+                    values="0.3;0.7;0.3"
+                    dur={`${dur}s`}
+                    repeatCount="indefinite"
+                  />
+                </path>
+              </g>
+            );
+          })}
+
+          {/* Crown icons (premium) */}
+          {[...Array(5)].map((_, i) => {
+            const x = 220 + i * 230;
+            const y = 500 + (i % 2) * 80;
+            const dur = 7 + i;
+            return (
+              <g key={`crown-${i}`} opacity="0.4">
+                <path
+                  d={`M${x - 15},${y + 8} L${x - 18},${y - 5} L${
+                    x - 10
+                  },${y} L${x},${y - 10} L${x + 10},${y} L${x + 18},${y - 5} L${
+                    x + 15
+                  },${y + 8} Z`}
+                  fill="url(#accessGradient)"
+                  stroke="#FFC94B"
+                  strokeWidth="2"
+                >
+                  <animate
+                    attributeName="opacity"
+                    values="0.3;0.7;0.3"
+                    dur={`${dur}s`}
+                    repeatCount="indefinite"
+                  />
+                </path>
+                <circle cx={x - 10} cy={y - 5} r="3" fill="#FFC94B" />
+                <circle cx={x} cy={y - 12} r="3" fill="#FFC94B" />
+                <circle cx={x + 10} cy={y - 5} r="3" fill="#FFC94B" />
+                <animateTransform
+                  attributeName="transform"
+                  type="translate"
+                  values={`0,0; 0,-8; 0,0`}
+                  dur={`${dur}s`}
+                  repeatCount="indefinite"
+                />
+              </g>
+            );
+          })}
+
+          {/* Sparkles */}
+          {[...Array(20)].map((_, i) => {
+            const cx = (i * 82 + 75) % 1125;
+            const cy = (i * 63 + 90) % 610;
+            const dur = 3 + (i % 5) * 0.5;
+            return (
+              <g key={`sparkle-access-${i}`} opacity="0.5">
+                <circle cx={cx} cy={cy} r="3" fill="#5EC1E8">
+                  <animate
+                    attributeName="opacity"
+                    values="0;1;0"
+                    dur={`${dur}s`}
+                    repeatCount="indefinite"
+                  />
+                  <animate
+                    attributeName="r"
+                    values="3;6;3"
+                    dur={`${dur}s`}
+                    repeatCount="indefinite"
+                  />
+                </circle>
+                <line
+                  x1={cx}
+                  y1={cy - 9}
+                  x2={cx}
+                  y2={cy + 9}
+                  stroke="#5EC1E8"
+                  strokeWidth="2"
+                >
+                  <animate
+                    attributeName="opacity"
+                    values="0;1;0"
+                    dur={`${dur}s`}
+                    repeatCount="indefinite"
+                  />
+                </line>
+                <line
+                  x1={cx - 9}
+                  y1={cy}
+                  x2={cx + 9}
+                  y2={cy}
+                  stroke="#5EC1E8"
+                  strokeWidth="2"
+                >
+                  <animate
+                    attributeName="opacity"
+                    values="0;1;0"
+                    dur={`${dur}s`}
+                    repeatCount="indefinite"
+                  />
+                </line>
+              </g>
+            );
+          })}
+
+          {/* Glowing orbs */}
+          <circle cx="200" cy="200" r="130" fill="url(#glowAccess)">
+            <animate
+              attributeName="r"
+              values="130;160;130"
+              dur="8s"
+              repeatCount="indefinite"
+            />
+          </circle>
+          <circle cx="1000" cy="500" r="120" fill="#2CA4A4" opacity="0.15">
+            <animate
+              attributeName="r"
+              values="120;150;120"
+              dur="7s"
+              repeatCount="indefinite"
+            />
+          </circle>
+        </svg>
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
